@@ -8,4 +8,4 @@ npm install
 ```
 
 
-`this project developed with 💙 + Bulma,Svelte {Svelma} 🌻`
+`this project developed with 💙 + Bulma,Svelte {Svelma 🌻} + Firebase 🔥`
