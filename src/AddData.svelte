@@ -69,7 +69,10 @@
       }
       // if there is many tags in input (sport,manga ..) add them all 👍
       else if (tag.split(",").length > 1) {
-        tag = tag.split(",").map(e => e.trim());
+        tag = tag
+          .split(",")
+          .map(e => e.trim())
+          .filter(e => !questions.tags.includes(e)); // avoid duplication tags in this case too 👍
         questions.tags = [...questions.tags, ...tag];
         tag = ""; // reset
       } else {
