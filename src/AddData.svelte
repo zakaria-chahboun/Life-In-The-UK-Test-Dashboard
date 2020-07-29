@@ -281,14 +281,14 @@
         // check if questionsID collection exist
         if (collection.docs.length > 0) {
           // test : questionsID collection alredy exist + have childs 👍
-          const indexs = collection.docs.map(e => e.id).sort();
-          const lastIndex = parseInt(indexs[indexs.length - 1]);
-          // create a right index (doc) to put the 'refenece' inside it
-          const newIndex = lastIndex + 1;
-          const newDoc = questionsIDCollection.doc(`${newIndex}`);
+          const steps = collection.docs.map(e => e.id).sort();
+          const lastStep = parseInt(steps[steps.length - 1]);
+          // create the right step (doc) to put the 'refenece' inside it
+          const newStep = lastStep + 1;
+          const newStepDoc = questionsIDCollection.doc(`${newStep}`);
           // add new question reference to the chosen test 👌
-          t.set(newDoc, { reference: newQuestion.id });
-          // -- now create an 'index' for the number index field in the question itself (for random case)
+          t.set(newStepDoc, { reference: newQuestion.id });
+          // -- now create an 'index' for index field in the question doc itself (for random case)
           const qCollection = await firestore.collection("questions").get();
           questions.index = 0; // the defualt
           if (qCollection.docs.length > 0) {
@@ -299,11 +299,11 @@
         }
         // test: questionsID collection doesn't exist + no childs 🧑‍
         else {
-          const index = 0; // first index :)
-          // create (doc) to put the 'refenece' inside it
-          const newDoc = questionsIDCollection.doc(`${index}`);
+          const steps = 0; // first step :)
+          // create step (doc) to put the 'refenece' inside it
+          const newStepDoc = questionsIDCollection.doc(`${steps}`);
           // add new question reference to the chosen test 👌
-          t.set(newDoc, { reference: newQuestion.id });
+          t.set(newStepDoc, { reference: newQuestion.id });
           // -- now create an 'index' for the number index field in the question itself (for random case)
           const qCollection = await firestore.collection("questions").get();
           questions.index = 0; // the defualt
