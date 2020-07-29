@@ -14,11 +14,12 @@
 
   // -- Questions Section --
   let questions = {
-    index: "",
+    index: null,
     question: "",
     description: "",
-    tags: ["manga", "anime"],
-    answers: []
+    tags: [],
+    answers: [],
+    parent: ""
   };
 
   // -- Tests Section --
@@ -36,7 +37,6 @@
     answer: "",
     isCorrect: false
   };
-  let testParent;
   let isLoadingTest = false; // ui/ux
   let isLoadingQuestion = false; // ui/ux
   let isLoadingTestParent = false; // ui/ux
@@ -51,6 +51,7 @@
     message: "",
     type: "is-warning"
   };
+  let promiseLoadTestIDs = loadTestIDs(); // for {await} svelte
 
   // ____________ Client Data handling _____________________
   function addTag(event) {
@@ -122,8 +123,25 @@
       notificationTest.message = ""; // clear
     }, timeout);
   }
-  function resetTestFields() {}
-  function resetQuestionFields() {}
+  function resetFields({ type }) {
+    if (type == "tests") {
+      testID = "";
+      tests.testTitle = "";
+      tests.testSubtitle = "";
+      tests.isAuth = false;
+    } else if (type == "questions") {
+      questions.index = null;
+      questions.question = "";
+      questions.description = "";
+      questions.tags = [];
+      questions.answers = [];
+      answer = {
+        answer: "",
+        isCorrect: false
+      };
+      questions.parent = "";
+    }
+  }
 
   // ____________ Firebase Data Handling ____________
   // for generate a test id (with a name like: test_3)
@@ -200,30 +218,133 @@
       const testsCollection = await firestore
         .collection("tests")
         .doc(testID)
-        .set(tests);
+        .set(tests, { merge: true });
       // send message to the author 🤗 ux
       setNotificationTest({
-        message: `the ${testID} is successfully added!`,
+        message: `the '${testID}'' is successfully added!`,
         type: "is-success"
       });
       isLoadingTest = false; // ux
-      testID = ""; // rest
+      resetFields({ type: "tests" }); // reset all test fields 😉 ux
     } catch (error) {
       setNotificationTest({
-        message: error
+        message: error,
+        type: "is-danger"
       });
+      isLoadingTest = false; // ux
     }
   }
 
-  function addQuestion() {
-    isLoadingQuestion = true;
+  async function addQuestion() {
+    isLoadingQuestion = true; //ux
+    try {
+      // check format:
+      let collector = [];
+      if (questions.question === "") {
+        collector.push("question");
+      }
+      if (questions.description === "") {
+        collector.push("description");
+      }
+      if (questions.tags.length === 0) {
+        collector.push("tags");
+      }
+      if (questions.answers.length === 0) {
+        collector.push("answers");
+      }
+      if (questions.parent === "") {
+        collector.push("test parent");
+      }
+      // dynamic responce text 🤭
+      if (collector.length > 0) {
+        let message = `The ${collector} ${
+          collector.length > 1 ? "are" : "is"
+        } empty 🙄!`;
+        setNotificationQuestion({
+          message
+        });
+        isLoadingQuestion = false; // ux
+        return;
+      }
+
+      // point on questionsID collection
+      let questionsIDCollection = firestore
+        .collection("tests")
+        .doc(questions.parent)
+        .collection("questionsID");
+      // generate &  point on a new question (doc)
+      let newQuestion = firestore.collection("questions").doc();
+
+      // -- Firebase Transaction -- like commit in SQL world
+      await firestore.runTransaction(async t => {
+        const collection = await questionsIDCollection.get();
+        // check if questionsID collection exist
+        if (collection.docs.length > 0) {
+          // test : questionsID collection alredy exist + have childs 👍
+          const indexs = collection.docs.map(e => e.id).sort();
+          const lastIndex = parseInt(indexs[indexs.length - 1]);
+          // create a right index (doc) to put the 'refenece' inside it
+          const newIndex = lastIndex + 1;
+          const newDoc = questionsIDCollection.doc(`${newIndex}`);
+          // add new question reference to the chosen test 👌
+          t.set(newDoc, { reference: newQuestion.id });
+          // -- now create an 'index' for the number index field in the question itself (for random case)
+          const qCollection = await firestore.collection("questions").get();
+          questions.index = 0; // the defualt
+          if (qCollection.docs.length > 0) {
+            questions.index = qCollection.docs.length; // becuse the count begin with 0
+          }
+          // then push the newQuestion to the questions collection 😉
+          t.set(newQuestion, questions);
+        }
+        // test: questionsID collection doesn't exist + no childs 🧑‍
+        else {
+          const index = 0; // first index :)
+          // create (doc) to put the 'refenece' inside it
+          const newDoc = questionsIDCollection.doc(`${index}`);
+          // add new question reference to the chosen test 👌
+          t.set(newDoc, { reference: newQuestion.id });
+          // -- now create an 'index' for the number index field in the question itself (for random case)
+          const qCollection = await firestore.collection("questions").get();
+          questions.index = 0; // the defualt
+          if (qCollection.docs.length > 0) {
+            questions.index = qCollection.docs.length; // becuse the count begin with 0
+          }
+          // then push the newQuestion to the questions collection 😉
+          t.set(newQuestion, questions);
+        }
+      });
+
+      // send message to the author 🤗 ux
+      setNotificationQuestion({
+        message: `the question '${newQuestion.id}' is successfully added!`,
+        type: "is-success"
+      });
+      isLoadingQuestion = false; // ux
+      resetFields({ type: "questions" }); // reset all questions fields 😉 ux
+    } catch (error) {
+      setNotificationQuestion({
+        message: error,
+        type: "is-danger"
+      });
+      isLoadingQuestion = false; // ux
+    }
   }
 
-  function generateQuestionIndex() {}
-
-  function generateTestQuestionIndex() {}
-
-  function addQuestionsToTest() {}
+  async function loadTestIDs() {
+    isLoadingTestParent = true; // ux 😉
+    try {
+      const testsIDs = await firestore.collection("tests").get();
+      isLoadingTestParent = false; // ux 😉
+      return testsIDs.docs.map(e => e.id);
+    } catch (error) {
+      setNotificationQuestion({
+        message: error,
+        type: "is-danger"
+      });
+      isLoadingTestParent = false; // ux 😉
+    }
+  }
 </script>
 
 <!-- body -->
@@ -355,15 +476,26 @@
       </Field>
     {/each}
     <!-- Test parent (from db) -->
-    <Field label="add test parent">
+    <label class="label">add test parent</label>
+    <Field>
       <Select
         placeholder="chose one"
-        bind:selected={testParent}
+        bind:selected={questions.parent}
         expanded
         loading={isLoadingTestParent}>
-        <option value={true}>test1</option>
-        <option value={true}>test2</option>
+        {#await promiseLoadTestIDs then data}
+          {#each data as id}
+            <option value={id}>{id}</option>
+          {/each}
+        {/await}
       </Select>
+      <p class="control">
+        <Button
+          type="is-dark"
+          on:click={e => (promiseLoadTestIDs = loadTestIDs())}>
+          <Icon icon="fire" />
+        </Button>
+      </p>
     </Field>
     <!-- Upload a question -->
     <Button
@@ -373,6 +505,13 @@
       expanded>
       <Icon icon="plus" />
     </Button>
+    <!-- Hiding area; Notification for success of error -->
+    <Notification
+      icon={true}
+      type={notificationQuestion.type}
+      bind:active={notificationQuestion.showUp}>
+      {notificationQuestion.message}
+    </Notification>
   </div>
 
 </div>
