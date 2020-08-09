@@ -157,7 +157,7 @@
       const ids = testsCollection.docs
         .map(e => e.id)
         .filter(e => e.startsWith("test_"))
-        .sort();
+        .sort((a, z) => a - z); // ascending sorting
 
       // check if no tests doc!
       if (ids.length === 0) {
