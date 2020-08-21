@@ -302,7 +302,7 @@
         }
         // test: questionsID collection doesn't exist + no childs 🧑‍
         else {
-          const steps = 0; // first step :)
+          const steps = 1; // first step :)
           // create step (doc) to put the 'refenece' inside it
           const newStepDoc = questionsIDCollection.doc(`${steps}`);
           // add new question reference to the chosen test 👌
@@ -311,7 +311,7 @@
           const qCollection = await firestore.collection("questions").get();
           questions.index = 0; // the defualt
           if (qCollection.docs.length > 0) {
-            questions.index = qCollection.docs.length; // becuse the count begin with 0
+            questions.index = qCollection.docs.length; // because the count begin with 0
           }
           // then push the newQuestion to the questions collection 😉
           t.set(newQuestion, questions);
