@@ -10,11 +10,11 @@
     Select,
     Notification
   } from "svelma";
-  import { firestore } from "./firebase.js";
+  import { firebase, firestore } from "./firebase.js";
 
   // -- Questions Section --
   let questions = {
-    index: null,
+    rand: null,
     question: "",
     description: "",
     tags: [],
@@ -26,7 +26,8 @@
   let tests = {
     testTitle: "",
     testSubtitle: "",
-    isAuth: false
+    isPrivate: false,
+    createdAt: firebase.firestore.FieldValue.serverTimestamp()
   };
   let testID; // for set a named test id (test_1 , test_2 ..)
   let questionsID; // subcollection
@@ -131,9 +132,9 @@
       testID = "";
       tests.testTitle = "";
       tests.testSubtitle = "";
-      tests.isAuth = false;
+      tests.isPrivate = false;
     } else if (type == "questions") {
-      questions.index = null;
+      questions.rand = null;
       questions.question = "";
       questions.description = "";
       questions.tags = [];
@@ -169,7 +170,7 @@
       let lastIDIndex = parseInt(ids[ids.length - 1].slice(5));
       let length = ids.length;
 
-      // case 1: the last index of the tests is > than the length of ids 🙄
+      // case 1: the index of the tests is > than the length of ids 🙄
       if (lastIDIndex > length) {
         isLoadingGenerateID = !true; // ux
         testID = `test_${lastIDIndex + 1}`;
@@ -291,11 +292,11 @@
           const newStepDoc = questionsIDCollection.doc(`${newStep}`);
           // add new question reference to the chosen test 👌
           t.set(newStepDoc, { reference: newQuestion.id });
-          // -- now create an 'index' for index field in the question doc itself (for random case)
+          // -- now create a 'rand' field in the question doc itself (for random case)
           const qCollection = await firestore.collection("questions").get();
-          questions.index = 0; // the defualt
+          questions.rand = 0; // the defualt
           if (qCollection.docs.length > 0) {
-            questions.index = qCollection.docs.length; // becuse the count begin with 0
+            questions.rand = qCollection.docs.length; // becuse the count begin with 0
           }
           // then push the newQuestion to the questions collection 😉
           t.set(newQuestion, questions);
@@ -307,11 +308,11 @@
           const newStepDoc = questionsIDCollection.doc(`${steps}`);
           // add new question reference to the chosen test 👌
           t.set(newStepDoc, { reference: newQuestion.id });
-          // -- now create an 'index' for the number index field in the question itself (for random case)
+          // -- now create a 'rand' field in the question doc itself (for random case)
           const qCollection = await firestore.collection("questions").get();
-          questions.index = 0; // the defualt
+          questions.rand = 0; // the defualt
           if (qCollection.docs.length > 0) {
-            questions.index = qCollection.docs.length; // because the count begin with 0
+            questions.rand = qCollection.docs.length; // because the count begin with 0
           }
           // then push the newQuestion to the questions collection 😉
           t.set(newQuestion, questions);
@@ -388,9 +389,9 @@
         bind:value={tests.testSubtitle}
         maxlength="80" />
     </Field>
-    <!-- isAuth? -->
+    <!-- isPrivate? -->
     <div class="field">
-      <Switch bind:checked={tests.isAuth}>is authenticated 🤴?</Switch>
+      <Switch bind:checked={tests.isPrivate}>is authenticated 🤴?</Switch>
     </div>
     <!-- Upload a Test -->
     <Button
