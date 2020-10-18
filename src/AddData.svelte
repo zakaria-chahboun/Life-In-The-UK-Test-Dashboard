@@ -170,7 +170,7 @@
       let lastIDIndex = parseInt(ids[ids.length - 1].slice(5));
       let length = ids.length;
 
-      // case 1: the index of the tests is > than the length of ids 🙄
+      // case 1: the last index of the tests is > than the length of ids 🙄
       if (lastIDIndex > length) {
         isLoadingGenerateID = !true; // ux
         testID = `test_${lastIDIndex + 1}`;
