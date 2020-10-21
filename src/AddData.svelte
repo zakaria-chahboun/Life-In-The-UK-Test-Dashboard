@@ -8,7 +8,8 @@
     Button,
     Icon,
     Select,
-    Notification
+    Notification,
+    Modal
   } from "svelma";
   import { firebase, firestore } from "./firebase.js";
 
@@ -42,6 +43,8 @@
   let isLoadingQuestion = false; // ui/ux
   let isLoadingTestParent = false; // ui/ux
   let isLoadingGenerateID = false; // ui/ux
+  let isLoadingTags = false; // ui/ux
+  let isModalActive = false; // ui/ux
   let notificationTest = {
     showUp: false,
     message: "",
@@ -53,9 +56,13 @@
     type: "is-warning"
   };
   let promiseLoadTestIDs = loadTestIDs(); // for {await} svelte
+  let tagsFromDB = [];
+
+  // -- Listen: to tags, if > 10 then reject the last added tag 🐿 (firebase query rule)
+  $: maxtags = questions.tags.length === 10;
 
   // ____________ Client Data handling _____________________
-  function addTag(event) {
+  function addTag() {
     // adding tags by Enter event :)
     if (event && event.key === "Enter") {
       // remove white spaces, tabs ..
@@ -335,6 +342,7 @@
     }
   }
 
+  // Load tests ids from firebase
   async function loadTestIDs() {
     isLoadingTestParent = true; // ux 😉
     try {
@@ -349,7 +357,69 @@
       isLoadingTestParent = false; // ux 😉
     }
   }
+  // Load tags from firebase
+  async function loadTags({ showModal = false }) {
+    isLoadingTags = true; // ux 😉
+    try {
+      const tags = await firestore
+        .collection("internals")
+        .doc("questions")
+        .get();
+      isLoadingTags = false; // ux 😉
+      if (showModal) isModalActive = true; // ux 😉
+      tagsFromDB = tags.data().tags;
+      tagsFromDB.sort();
+    } catch (error) {
+      setNotificationQuestion({
+        message: error,
+        type: "is-danger"
+      });
+      isLoadingTags = false; // ux 😉
+      isModalActive = false; // ux
+    }
+  }
 </script>
+
+<!-- Modal: Select Tags -->
+<Modal bind:active={isModalActive}>
+  <div class="modal-background" />
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Select Tags (Max 10)</p>
+    </header>
+    <section class="modal-card-body">
+      <!-- Content ... -->
+      <div class="columns is-multiline">
+        {#each tagsFromDB as tag}
+          <div class="column is-6">
+            <label class="checkbox">
+              <input
+                type="checkbox"
+                bind:group={questions.tags}
+                value={tag}
+                disabled={maxtags && !questions.tags.includes(`${tag}`)} />
+              {tag}
+            </label>
+          </div>
+        {:else}No tags in database!{/each}
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+      <Button type="is-dark" on:click={() => (isModalActive = false)}>
+        Okay
+      </Button>
+      <Button
+        on:click={() => {
+          questions.tags = [];
+        }}>
+        Reset
+      </Button>
+      <p>
+        You're select {questions.tags.length} {questions.tags.length === 1 ? 'tag' : 'tags'}
+      </p>
+    </footer>
+  </div>
+</Modal>
 
 <!-- body -->
 <div class="tile">
@@ -360,10 +430,10 @@
     <label class="label">test id</label>
     <Field>
       <Input
+        expanded
         placeholder="a named id like (test_1) 🥑"
         bind:value={testID}
         icon="fire"
-        expanded
         readonly />
       <p class="control">
         <Button
@@ -428,13 +498,15 @@
         maxlength="300" />
     </Field>
     <!-- add tags -->
-    <Field label="add tags">
-      <Input
-        bind:value={tag}
-        on:keydown={event => addTag(event)}
-        placeholder="Add tag here, then press 'Enter' key 💜"
-        icon="horse" />
-    </Field>
+    <label class="label">add tags</label>
+    <Button
+      expanded
+      type="is-dark"
+      on:click={() => loadTags({ showModal: true })}
+      loading={isLoadingTags}>
+      <Icon icon="fire" />
+    </Button>
+    <br />
     <!-- display tags -->
     <Taglist>
       {#each questions.tags as item, i}
