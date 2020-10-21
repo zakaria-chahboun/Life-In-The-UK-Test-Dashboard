@@ -99,6 +99,8 @@
       isCorrect: answer.isCorrect
     });
     questions.answers = questions.answers;
+    // clear data
+    answer.answer = "";
   }
   function deleteAnswer(index) {
     questions.answers.splice(index, 1);
