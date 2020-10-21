@@ -28,7 +28,8 @@
     testTitle: "",
     testSubtitle: "",
     isPrivate: false,
-    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+    needToPass: ""
   };
   let testID; // for set a named test id (test_1 , test_2 ..)
   let questionsID; // subcollection
@@ -216,17 +217,31 @@
       if (tests.testSubtitle === "") {
         collector.push("subtitle");
       }
+      if (tests.needToPass === "") {
+        collector.push("need-to-pass");
+      }
       // dynamic responce text 🤭
       if (collector.length > 0) {
         let message = `The ${collector} ${
           collector.length > 1 ? "are" : "is"
         } empty 🙄!`;
+
         setNotificationTest({
           message
         });
         isLoadingTest = false; // ux
         return;
       }
+      // the needToPass must be positive non-zero
+      tests.needToPass = parseInt(tests.needToPass);
+      if (tests.needToPass <= 0) {
+        setNotificationTest({
+          message: `need-to-pass must be great than 0 🤦‍♂`
+        });
+        isLoadingTest = false; // ux
+        return;
+      }
+
       // set data in db
       const testsCollection = await firestore
         .collection("tests")
@@ -460,6 +475,15 @@
         type="textarea"
         bind:value={tests.testSubtitle}
         maxlength="80" />
+    </Field>
+    <!-- Need To Pass -->
+    <Field label="Need To Pass">
+      <Input
+        placeholder="add a number value great than 0 🐿"
+        type="number"
+        bind:value={tests.needToPass}
+        max="40"
+        min="1" />
     </Field>
     <!-- isPrivate? -->
     <div class="field">
