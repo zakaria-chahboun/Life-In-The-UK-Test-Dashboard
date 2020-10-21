@@ -482,7 +482,7 @@
         placeholder="add a number value great than 0 🐿"
         type="number"
         bind:value={tests.needToPass}
-        max="40"
+        max="100"
         min="1" />
     </Field>
     <!-- isPrivate? -->
