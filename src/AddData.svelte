@@ -15,7 +15,7 @@
 
   // -- Questions Section --
   let questions = {
-    rand: null,
+    random: null,
     question: "",
     description: "",
     tags: [],
@@ -144,7 +144,7 @@
       tests.testSubtitle = "";
       tests.isPrivate = false;
     } else if (type == "questions") {
-      questions.rand = null;
+      questions.random = null;
       questions.question = "";
       questions.description = "";
       questions.tags = [];
@@ -316,11 +316,11 @@
           const newStepDoc = questionsIDCollection.doc(`${newStep}`);
           // add new question reference to the chosen test 👌
           t.set(newStepDoc, { reference: newQuestion.id });
-          // -- now create a 'rand' field in the question doc itself (for random case)
+          // -- now create a 'random' field in the question doc itself (for random case)
           const qCollection = await firestore.collection("questions").get();
-          questions.rand = 0; // the defualt
+          questions.random = 0; // the defualt
           if (qCollection.docs.length > 0) {
-            questions.rand = qCollection.docs.length; // becuse the count begin with 0
+            questions.random = qCollection.docs.length; // becuse the count begin with 0
           }
           // then push the newQuestion to the questions collection 😉
           t.set(newQuestion, questions);
@@ -332,11 +332,11 @@
           const newStepDoc = questionsIDCollection.doc(`${steps}`);
           // add new question reference to the chosen test 👌
           t.set(newStepDoc, { reference: newQuestion.id });
-          // -- now create a 'rand' field in the question doc itself (for random case)
+          // -- now create a 'random' field in the question doc itself (for random case)
           const qCollection = await firestore.collection("questions").get();
-          questions.rand = 0; // the defualt
+          questions.random = 0; // the defualt
           if (qCollection.docs.length > 0) {
-            questions.rand = qCollection.docs.length; // because the count begin with 0
+            questions.random = qCollection.docs.length; // because the count begin with 0
           }
           // then push the newQuestion to the questions collection 😉
           t.set(newQuestion, questions);
