@@ -4,7 +4,7 @@
 </script>
 
 <!-- nav bar -->
-<nav class="navbar is-dark mb-6" role="navigation" aria-label="main navigation">
+<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" href="/">
       <img
@@ -13,8 +13,39 @@
         width="112"
         height="28" />
     </a>
-    <a class="navbar-item" href="#">Adding Data</a>
   </div>
 </nav>
 
-<AddData />
+<!-- Sidebar And Body -->
+<section class="main-content columns is-fullheight" style="min-height:100%">
+  <!-- Siebare -->
+  <aside class="menu column is-2 has-background-dark">
+    <p class="mb-6" />
+    <p class="menu-label has-text-white-ter">Managment</p>
+    <ul class="menu-list">
+      <li>
+        <a href="##" class="has-text-white-ter">
+          <span class="icon">
+            <i class="fa fa-plus" />
+          </span>
+          Adding Tests & Questions
+        </a>
+      </li>
+      <li>
+        <a href="##" class="has-text-white-ter">
+          <span class="icon">
+            <i class="fa fa-plus" />
+          </span>
+          Adding Tags
+        </a>
+      </li>
+    </ul>
+  </aside>
+  <!-- Body -->
+  <div class="container column is-10">
+    <div class="section">
+      <AddData />
+    </div>
+  </div>
+
+</section>
