@@ -1,6 +1,10 @@
 <script>
   import "bulma/css/bulma.css";
+  import { slide } from "svelte/transition";
   import AddData from "./AddData.svelte";
+  import AddTags from "./AddTags.svelte";
+
+  let body = AddData; // by default;
 </script>
 
 <!-- nav bar -->
@@ -24,18 +28,20 @@
     <p class="menu-label has-text-white-ter">Managment</p>
     <ul class="menu-list">
       <li>
-        <a href="##" class="has-text-white-ter">
-          <span class="icon">
-            <i class="fa fa-plus" />
-          </span>
+        <a
+          href="##"
+          class="has-text-white-ter"
+          on:click={() => (body = AddData)}>
+          <span class="icon"> <i class="fa fa-plus" /> </span>
           Adding Tests & Questions
         </a>
       </li>
       <li>
-        <a href="##" class="has-text-white-ter">
-          <span class="icon">
-            <i class="fa fa-plus" />
-          </span>
+        <a
+          href="##"
+          class="has-text-white-ter"
+          on:click={() => (body = AddTags)}>
+          <span class="icon"> <i class="fa fa-plus" /> </span>
           Adding Tags
         </a>
       </li>
@@ -44,8 +50,11 @@
   <!-- Body -->
   <div class="container column is-10">
     <div class="section">
-      <AddData />
+      {#key body}
+        <div transition:slide>
+          <svelte:component this={body} />
+        </div>
+      {/key}
     </div>
   </div>
-
 </section>
