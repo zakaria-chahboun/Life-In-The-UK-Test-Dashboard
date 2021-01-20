@@ -56,6 +56,8 @@
     message: "",
     type: "is-warning"
   };
+
+  // To load tags from db
   let promiseLoadTestIDs = loadTestIDs(); // for {await} svelte
   let tagsFromDB = [];
 
@@ -63,33 +65,7 @@
   $: maxtags = questions.tags.length === 10;
 
   // ____________ Client Data handling _____________________
-  function addTag() {
-    // adding tags by Enter event :)
-    if (event && event.key === "Enter") {
-      // remove white spaces, tabs ..
-      tag = tag.trim();
-      // we don't want empty data
-      if (tag === "") {
-        return;
-      }
-      // we don't want duplicated data
-      else if (questions.tags.includes(tag)) {
-        return;
-      }
-      // if there is many tags in input (sport,manga ..) add them all 👍
-      else if (tag.split(",").length > 1) {
-        tag = tag
-          .split(",")
-          .map(e => e.trim())
-          .filter(e => !questions.tags.includes(e)); // avoid duplication tags in this case too 👍
-        questions.tags = [...questions.tags, ...tag];
-        tag = ""; // reset
-      } else {
-        questions.tags = [...questions.tags, tag];
-        tag = ""; // reset
-      }
-    }
-  }
+  
   function deleteTag(index) {
     questions.tags.splice(index, 1);
     questions.tags = questions.tags;
