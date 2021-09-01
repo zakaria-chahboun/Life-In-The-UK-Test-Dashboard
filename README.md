@@ -5,6 +5,8 @@
 ```bash
 cd dashboard-quiz-supabase
 npm install
+
+npm run dev
 ```
 
 `this project developed with 💙 + Bulma,Svelte {Svelma 🌻} + Supabase 🔥`
