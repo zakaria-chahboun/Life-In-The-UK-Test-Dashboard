@@ -29,6 +29,7 @@
     status: "public",
     score_to_pass: 35,
     difficulty: "easy",
+    category: "",
   };
 
   // Answers
@@ -48,6 +49,7 @@
   };
 
   let isLoadingTest = false; // ui/ux
+  let isLoadingCategory = false; // ui/ux
   let isLoadingQuestion = false; // ui/ux
   let isLoadingTestParent = false; // ui/ux
   let isLoadingGenerateID = false; // ui/ux
@@ -127,6 +129,7 @@
       test.status = "public";
       test.score_to_pass = 35;
       test.difficulty = "easy";
+      test.category = "";
     } else if (type == "questions") {
       question.question_title = "";
       question.question_hint = "";
@@ -206,6 +209,9 @@
       if (test.score_to_pass === "") {
         collector.push("score to pass");
       }
+      if (test.category === "") {
+        collector.push("category");
+      }
       // dynamic responce text 🤭
       if (collector.length > 0) {
         let message = `The ${collector} ${
@@ -231,7 +237,7 @@
       test.status = tmp_status ? "private" : "public";
 
       // set data in db
-      let { data, error } = await supabase.from("test").insert(test);
+      let { error } = await supabase.from("test").insert(test);
       if (error) throw error.message;
       // send message to the author 🤗 ux
       setNotificationTest({
@@ -263,9 +269,12 @@
       if (question.question_correction === "") {
         collector.push("correction");
       }
+      // Tags in this case optional
+      /*
       if (tags.length === 0) {
         collector.push("tags");
       }
+      */
       if (answers.length === 0) {
         collector.push("answers");
       }
@@ -338,7 +347,7 @@
     }
   }
 
-  // Load tests ids from firebase
+  // Load tests ids from supabase
   async function loadTestIDs() {
     isLoadingTestParent = true; // ux 😉
     try {
@@ -357,7 +366,7 @@
       isLoadingTestParent = false; // ux 😉
     }
   }
-  // Load tags from firebase
+  // Load tags from supabase
   async function loadTags({ showModal = false }) {
     isLoadingTags = true; // ux 😉
     try {
@@ -375,6 +384,22 @@
       });
       isLoadingTags = false; // ux 😉
       isModalActive = false; // ux
+    }
+  }
+  // Load categories from supabase
+  async function loadCategories() {
+    isLoadingCategory = true; // ux 😉
+    try {
+      const { data, error } = await supabase.from("category").select("*");
+      if (error) throw error.message;
+      isLoadingCategory = false; // ux 😉
+      return data;
+    } catch (error) {
+      setNotificationTest({
+        message: error,
+        type: "is-danger",
+      });
+      isLoadingCategory = false; // ux 😉
     }
   }
 </script>
@@ -450,7 +475,7 @@
         icon="dove"
       />
     </Field>
-    <!-- description -->
+    <!-- Description -->
     <Field label="test description">
       <Input
         placeholder="add a description of test here, don't write so mush 🙄"
@@ -459,6 +484,26 @@
         maxlength="80"
       />
     </Field>
+    <!-- Category -->
+    <label for="" class="label">Category</label>
+    <Field>
+      <Select
+        placeholder="chose category"
+        bind:selected={test.category}
+        expanded
+        loading={isLoadingCategory}
+      >
+        {#await loadCategories() then data}
+          {#each data as item}
+            <option class="is-capitalized" value={item.category_id}
+              >{item.category_name}</option
+            >
+          {/each}
+        {/await}
+        <option value={null}>Null</option>
+      </Select>
+    </Field>
+    <!-- Difficuly -->
     <Field label="difficulty">
       <div class="columns is-multiline">
         {#await supabase.from("difficulty").select("difficulty_id")}
@@ -550,7 +595,7 @@
       />
     </Field>
     <!-- add tags -->
-    <label class="label">add tags</label>
+    <label class="label">add tags (optional)</label>
     <Button
       expanded
       type="is-dark"
