@@ -13569,7 +13569,7 @@ var app = (function () {
     	let input_props = {
     		placeholder: "add a description of test here, don't write so mush 🙄",
     		type: "textarea",
-    		maxlength: "80"
+    		maxlength: "1000"
     	};
 
     	if (/*test*/ ctx[1].test_description !== void 0) {
@@ -13719,7 +13719,7 @@ var app = (function () {
     			attr_dev(option, "class", "is-capitalized");
     			option.__value = /*item*/ ctx[59].category_id;
     			option.value = option.__value;
-    			add_location(option, file$e, 497, 12, 13108);
+    			add_location(option, file$e, 497, 12, 13110);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option, anchor);
@@ -13783,7 +13783,7 @@ var app = (function () {
     			option.textContent = "Null";
     			option.__value = null;
     			option.value = option.__value;
-    			add_location(option, file$e, 502, 8, 13265);
+    			add_location(option, file$e, 502, 8, 13267);
     		},
     		m: function mount(target, anchor) {
     			info.block.m(target, info.anchor = anchor);
@@ -14055,16 +14055,16 @@ var app = (function () {
     			input = element("input");
     			t2 = space();
     			attr_dev(label, "for", /*d*/ ctx[68].difficulty_id);
-    			add_location(label, file$e, 513, 14, 13626);
+    			add_location(label, file$e, 513, 14, 13628);
     			attr_dev(input, "id", /*d*/ ctx[68].difficulty_id);
     			attr_dev(input, "type", "radio");
     			attr_dev(input, "name", "difficulty");
     			input.__value = /*d*/ ctx[68].difficulty_id;
     			input.value = input.__value;
     			/*$$binding_groups*/ ctx[28][1].push(input);
-    			add_location(input, file$e, 514, 14, 13695);
+    			add_location(input, file$e, 514, 14, 13697);
     			attr_dev(div, "class", "column");
-    			add_location(div, file$e, 512, 12, 13591);
+    			add_location(div, file$e, 512, 12, 13593);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -14154,7 +14154,7 @@ var app = (function () {
     			div = element("div");
     			info.block.c();
     			attr_dev(div, "class", "columns is-multiline");
-    			add_location(div, file$e, 507, 6, 13389);
+    			add_location(div, file$e, 507, 6, 13391);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -14203,7 +14203,7 @@ var app = (function () {
     	let input_props = {
     		placeholder: "add a number value > 0 🐿",
     		type: "number",
-    		max: "100",
+    		max: "1000",
     		min: "1"
     	};
 
@@ -14435,7 +14435,7 @@ var app = (function () {
     	let input_props = {
     		placeholder: "add a hint (to help user) here, 👌",
     		type: "text",
-    		maxlength: "300"
+    		maxlength: "1000"
     	};
 
     	if (/*question*/ ctx[0].question_hint !== void 0) {
@@ -14568,7 +14568,7 @@ var app = (function () {
     	let input_props = {
     		placeholder: "add a question correction (the real answer) here, 👌",
     		type: "textarea",
-    		maxlength: "300",
+    		maxlength: "1000",
     		size: "is-small"
     	};
 
@@ -14923,10 +14923,10 @@ var app = (function () {
     			option1.textContent = "wrong";
     			option0.__value = true;
     			option0.value = option0.__value;
-    			add_location(option0, file$e, 629, 10, 16777);
+    			add_location(option0, file$e, 629, 10, 16782);
     			option1.__value = false;
     			option1.value = option1.__value;
-    			add_location(option1, file$e, 630, 10, 16825);
+    			add_location(option1, file$e, 630, 10, 16830);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option0, anchor);
@@ -15059,9 +15059,9 @@ var app = (function () {
     			p1 = element("p");
     			create_component(button.$$.fragment);
     			attr_dev(p0, "class", "control");
-    			add_location(p0, file$e, 627, 6, 16666);
+    			add_location(p0, file$e, 627, 6, 16671);
     			attr_dev(p1, "class", "control");
-    			add_location(p1, file$e, 633, 6, 16897);
+    			add_location(p1, file$e, 633, 6, 16902);
     		},
     		m: function mount(target, anchor) {
     			mount_component(input, target, anchor);
@@ -15148,7 +15148,7 @@ var app = (function () {
     			div = element("div");
     			div.textContent = "No answers in this question 😭!";
     			attr_dev(div, "class", "notification");
-    			add_location(div, file$e, 656, 6, 17618);
+    			add_location(div, file$e, 656, 6, 17623);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -15312,11 +15312,11 @@ var app = (function () {
     			create_component(button1.$$.fragment);
     			t3 = space();
     			attr_dev(p0, "class", "control");
-    			add_location(p0, file$e, 642, 8, 17158);
+    			add_location(p0, file$e, 642, 8, 17163);
     			attr_dev(p1, "class", "control");
-    			add_location(p1, file$e, 646, 8, 17308);
+    			add_location(p1, file$e, 646, 8, 17313);
     			attr_dev(p2, "class", "control");
-    			add_location(p2, file$e, 649, 8, 17425);
+    			add_location(p2, file$e, 649, 8, 17430);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p0, anchor);
@@ -15549,7 +15549,7 @@ var app = (function () {
     			t1 = text(t1_value);
     			option.__value = option_value_value = /*item*/ ctx[59].test_id;
     			option.value = option.__value;
-    			add_location(option, file$e, 670, 12, 18025);
+    			add_location(option, file$e, 670, 12, 18030);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option, anchor);
@@ -15739,7 +15739,7 @@ var app = (function () {
     			p = element("p");
     			create_component(button.$$.fragment);
     			attr_dev(p, "class", "control");
-    			add_location(p, file$e, 674, 6, 18142);
+    			add_location(p, file$e, 674, 6, 18147);
     		},
     		m: function mount(target, anchor) {
     			mount_component(select, target, anchor);
@@ -16254,21 +16254,21 @@ var app = (function () {
     			add_location(label0, file$e, 450, 4, 11885);
     			attr_dev(label1, "for", "");
     			attr_dev(label1, "class", "label");
-    			add_location(label1, file$e, 487, 4, 12814);
+    			add_location(label1, file$e, 487, 4, 12816);
     			attr_dev(div0, "class", "field");
-    			add_location(div0, file$e, 537, 4, 14293);
+    			add_location(div0, file$e, 537, 4, 14296);
     			attr_dev(div1, "class", "tile is-vertical mx-4 notification");
     			add_location(div1, file$e, 448, 2, 11802);
     			attr_dev(label2, "class", "label");
-    			add_location(label2, file$e, 597, 4, 15895);
+    			add_location(label2, file$e, 597, 4, 15900);
     			attr_dev(div2, "class", "notification");
-    			add_location(div2, file$e, 606, 4, 16126);
+    			add_location(div2, file$e, 606, 4, 16131);
     			attr_dev(label3, "class", "label");
-    			add_location(label3, file$e, 619, 4, 16456);
+    			add_location(label3, file$e, 619, 4, 16461);
     			attr_dev(label4, "class", "label");
-    			add_location(label4, file$e, 660, 4, 17734);
+    			add_location(label4, file$e, 660, 4, 17739);
     			attr_dev(div3, "class", "tile is-vertical mr-4 notification");
-    			add_location(div3, file$e, 560, 2, 14870);
+    			add_location(div3, file$e, 560, 2, 14873);
     			attr_dev(div4, "class", "tile");
     			add_location(div4, file$e, 446, 0, 11747);
     		},
@@ -17319,7 +17319,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (139:4) <Button type="is-dark" on:click={addTag} loading={isLoading}>
+    // (152:4) <Button type="is-dark" on:click={addTag} loading={isLoading}>
     function create_default_slot_5$1(ctx) {
     	let t;
 
@@ -17339,14 +17339,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_5$1.name,
     		type: "slot",
-    		source: "(139:4) <Button type=\\\"is-dark\\\" on:click={addTag} loading={isLoading}>",
+    		source: "(152:4) <Button type=\\\"is-dark\\\" on:click={addTag} loading={isLoading}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (128:0) <Field>
+    // (141:0) <Field>
     function create_default_slot_4$1(ctx) {
     	let input;
     	let updating_value;
@@ -17361,7 +17361,7 @@ var app = (function () {
 
     	let input_props = {
     		expanded: true,
-    		placeholder: "Insert 1 tag name like (sport) or multi-tags like (sport history animal ..) 🧒",
+    		placeholder: "Insert 1 tag name like (sport) or multi-tags like (sport,history,animal ..) 🧒",
     		icon: "fire"
     	};
 
@@ -17392,7 +17392,7 @@ var app = (function () {
     			p = element("p");
     			create_component(button.$$.fragment);
     			attr_dev(p, "class", "control");
-    			add_location(p, file$f, 137, 2, 3343);
+    			add_location(p, file$f, 150, 2, 3693);
     		},
     		m: function mount(target, anchor) {
     			mount_component(input, target, anchor);
@@ -17443,14 +17443,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_4$1.name,
     		type: "slot",
-    		source: "(128:0) <Field>",
+    		source: "(141:0) <Field>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (144:0) <Notification   icon={true}   type={notification.type}   bind:active={notification.showUp} >
+    // (157:0) <Notification   icon={true}   type={notification.type}   bind:active={notification.showUp} >
     function create_default_slot_3$1(ctx) {
     	let t_value = /*notification*/ ctx[2].message + "";
     	let t;
@@ -17474,14 +17474,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_3$1.name,
     		type: "slot",
-    		source: "(144:0) <Notification   icon={true}   type={notification.type}   bind:active={notification.showUp} >",
+    		source: "(157:0) <Notification   icon={true}   type={notification.type}   bind:active={notification.showUp} >",
     		ctx
     	});
 
     	return block;
     }
 
-    // (155:4) <Tag closable type="is-dark" size="is-large" on:close={(e) => deleteTag(i)}>
+    // (168:4) <Tag closable type="is-dark" size="is-large" on:close={(e) => deleteTag(i)}>
     function create_default_slot_2$1(ctx) {
     	let t0_value = /*item*/ ctx[13] + "";
     	let t0;
@@ -17509,14 +17509,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_2$1.name,
     		type: "slot",
-    		source: "(155:4) <Tag closable type=\\\"is-dark\\\" size=\\\"is-large\\\" on:close={(e) => deleteTag(i)}>",
+    		source: "(168:4) <Tag closable type=\\\"is-dark\\\" size=\\\"is-large\\\" on:close={(e) => deleteTag(i)}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (154:2) {#each tags as item, i}
+    // (167:2) {#each tags as item, i}
     function create_each_block$1(ctx) {
     	let tag_1;
     	let current;
@@ -17574,14 +17574,14 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(154:2) {#each tags as item, i}",
+    		source: "(167:2) {#each tags as item, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (153:0) <Taglist>
+    // (166:0) <Taglist>
     function create_default_slot_1$2(ctx) {
     	let each_1_anchor;
     	let current;
@@ -17670,14 +17670,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1$2.name,
     		type: "slot",
-    		source: "(153:0) <Taglist>",
+    		source: "(166:0) <Taglist>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (164:27) 
+    // (177:27) 
     function create_if_block_1$8(ctx) {
     	let message;
     	let current;
@@ -17717,14 +17717,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1$8.name,
     		type: "if",
-    		source: "(164:27) ",
+    		source: "(177:27) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (162:0) {#if isLoadingTags}
+    // (175:0) {#if isLoadingTags}
     function create_if_block$9(ctx) {
     	let progress;
     	let current;
@@ -17756,14 +17756,14 @@ var app = (function () {
     		block,
     		id: create_if_block$9.name,
     		type: "if",
-    		source: "(162:0) {#if isLoadingTags}",
+    		source: "(175:0) {#if isLoadingTags}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (165:2) <Message title="Sorry">
+    // (178:2) <Message title="Sorry">
     function create_default_slot$2(ctx) {
     	let t;
 
@@ -17783,7 +17783,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$2.name,
     		type: "slot",
-    		source: "(165:2) <Message title=\\\"Sorry\\\">",
+    		source: "(178:2) <Message title=\\\"Sorry\\\">",
     		ctx
     	});
 
@@ -17870,7 +17870,7 @@ var app = (function () {
     			if (if_block) if_block.c();
     			if_block_anchor = empty();
     			attr_dev(label, "class", "label");
-    			add_location(label, file$f, 126, 0, 3031);
+    			add_location(label, file$f, 139, 0, 3381);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -18028,8 +18028,8 @@ var app = (function () {
     			$$invalidate(3, isLoading = false);
     			return;
     		} else // if there is many tags in input (sport,manga ..) add them all 👍
-    		if (tag.split(" ").length > 1) {
-    			$$invalidate(0, tag = tag.split(" ").map(e => e.trim()).filter(e => !tags.includes(e))); // avoid duplication tags in this case too 👍
+    		if (tag.split(",").length > 1) {
+    			$$invalidate(0, tag = tag.split(",").map(e => e.trim()).filter(e => !tags.includes(e))); // avoid duplication tags in this case too 👍
     			$$invalidate(1, tags = [...tags, ...tag]);
     		} else // just one tag in input
     		{
@@ -18064,7 +18064,10 @@ var app = (function () {
 
     		// -- finally push to supabase
     		try {
-    			await supabase.from("tag").delete().eq("tag_id", selected_tag);
+    			const { count } = await supabase.from("question_tag").select("*", { count: "exact" }).eq("tag_id", selected_tag);
+    			if (count > 0) throw "You cannot delete this tag, because there are some questions that depend on it";
+    			const { error } = await supabase.from("tag").delete().eq("tag_id", selected_tag);
+    			if (error) throw error.message;
     		} catch(error) {
     			loadTags(); // load the old tags from db
     			setnotification({ message: error });
