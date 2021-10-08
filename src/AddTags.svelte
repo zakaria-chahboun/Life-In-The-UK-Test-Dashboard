@@ -42,9 +42,9 @@
       return;
     }
     // if there is many tags in input (sport,manga ..) add them all 👍
-    else if (tag.split(" ").length > 1) {
+    else if (tag.split(",").length > 1) {
       tag = tag
-        .split(" ")
+        .split(",")
         .map((e) => e.trim())
         .filter((e) => !tags.includes(e)); // avoid duplication tags in this case too 👍
       tags = [...tags, ...tag];
@@ -78,7 +78,20 @@
     tags = tags;
     // -- finally push to supabase
     try {
-      await supabase.from("tag").delete().eq("tag_id", selected_tag);
+      const { count } = await supabase
+        .from("question_tag")
+        .select("*", { count: "exact" })
+        .eq("tag_id", selected_tag);
+
+      if (count > 0)
+        throw "You cannot delete this tag, because there are some questions that depend on it";
+
+      const { error } = await supabase
+        .from("tag")
+        .delete()
+        .eq("tag_id", selected_tag);
+
+      if (error) throw error.message;
     } catch (error) {
       loadTags(); // load the old tags from db
       setnotification({ message: error });
@@ -128,7 +141,7 @@
 <Field>
   <Input
     expanded
-    placeholder="Insert 1 tag name like (sport) or multi-tags like (sport history animal ..) 🧒"
+    placeholder="Insert 1 tag name like (sport) or multi-tags like (sport,history,animal ..) 🧒"
     bind:value={tag}
     on:keypress={(event) => {
       if (event && event.key === "Enter") addTag();
