@@ -481,7 +481,7 @@
         placeholder="add a description of test here, don't write so mush 🙄"
         type="textarea"
         bind:value={test.test_description}
-        maxlength="80"
+        maxlength="1000"
       />
     </Field>
     <!-- Category -->
@@ -530,7 +530,7 @@
         placeholder="add a number value > 0 🐿"
         type="number"
         bind:value={test.score_to_pass}
-        max="100"
+        max="1000"
         min="1"
       />
     </Field>
@@ -573,7 +573,7 @@
         placeholder="add a hint (to help user) here, 👌"
         type="text"
         bind:value={question.question_hint}
-        maxlength="300"
+        maxlength="1000"
       />
     </Field>
     <!-- question point -->
@@ -590,7 +590,7 @@
         placeholder="add a question correction (the real answer) here, 👌"
         type="textarea"
         bind:value={question.question_correction}
-        maxlength="300"
+        maxlength="1000"
         size="is-small"
       />
     </Field>
