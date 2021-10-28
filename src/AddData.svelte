@@ -23,13 +23,12 @@
 
   // -- Test  --
   let test = {
-    test_name: "",
     test_title: "",
     test_description: "",
-    status: "public",
+    status_id: "public",
     score_to_pass: 35,
-    difficulty: "easy",
-    category: "",
+    difficulty_id: "easy",
+    category_id: "",
   };
 
   // Answers
@@ -40,7 +39,11 @@
 
   // -- Local Variables --
   let tmp_test_id = ""; // for binding
-  let tmp_status = ""; // for binding
+  let tmp_test_category = {
+    category_id: "",
+    category_name: "",
+  }; // for binding
+  let tmp_status = false; // for binding
 
   let tmp_answer = {
     answer_title: "",
@@ -123,13 +126,14 @@
   }
   function resetFields({ type }) {
     if (type == "tests") {
-      test.test_name = "";
       test.test_title = "";
       test.test_description = "";
-      test.status = "public";
+      test.status_id = "public";
       test.score_to_pass = 35;
-      test.difficulty = "easy";
-      test.category = "";
+      test.difficulty_id = "easy";
+      test.category_id = "";
+
+      tmp_status = false;
     } else if (type == "questions") {
       question.question_title = "";
       question.question_hint = "";
@@ -148,42 +152,47 @@
 
   // ____________ Supabase Data Handling ____________
   // for generate a unique test name 1,2,3 etc..
-  async function generateCorrectTestNumber() {
+  async function generateCorrectTestTitle(category_id, category_name) {
     isLoadingGenerateID = true; // ux
     try {
       // get test count from db
       let { data, error } = await supabase
         .from("test")
-        .select("test_name")
-        .order("test_name", { ascending: false });
+        .select("test_title")
+        .eq("category_id", category_id)
+        .order("order_test_title", { ascending: false });
 
       if (error) throw error.message;
 
+      // generate the Title template: example "Life in the UK Chapter" or "Life in the UK Exam"
+      category_name =
+        category_name.charAt(0).toUpperCase() + category_name.slice(1); //  uppercase the first letter
+      let template = `Life in the UK ${category_name.replace(/s$/g, "")}`; // Make plural word singluar (only for words that end with an s)
       // check if no tests doc!
       if (data.length === 0) {
         isLoadingGenerateID = !true; // ux
-        test.test_name = 1;
+        test.test_title = `${template} 1`;
         return;
       }
 
-      let lastIDIndex = data[0].test_name;
+      let lastIDIndex = parseInt(data[0].test_title.replace(/\D/g, "")); // extract number from text, then convert it to Integer
       let length = data.length;
 
       // case 1: the last index of the tests is > than the length of ids 🙄
       if (lastIDIndex > length) {
         isLoadingGenerateID = !true; // ux
-        test.test_name = lastIDIndex + 1;
+        test.test_title = `${template} ${lastIDIndex + 1}`;
         return;
       }
       // case 2: the last index of the tests is < than the length of ids 🙄
       else if (lastIDIndex < length) {
         isLoadingGenerateID = !true; // ux
-        test.test_name = length + 1;
+        test.test_title = `${template} ${length + 1}`;
         return;
       }
       // defalut return 😎
       isLoadingGenerateID = !true; // ux
-      test.test_name = lastIDIndex + 1;
+      test.test_title = `${template} ${lastIDIndex + 1}`;
       return;
     } catch (error) {
       setNotificationTest({
@@ -197,9 +206,6 @@
     try {
       // check format:
       let collector = [];
-      if (test.test_name === "") {
-        collector.push("unique name");
-      }
       if (test.test_title === "") {
         collector.push("title");
       }
@@ -209,7 +215,7 @@
       if (test.score_to_pass === "") {
         collector.push("score to pass");
       }
-      if (test.category === "") {
+      if (tmp_test_category.category_id === "") {
         collector.push("category");
       }
       // dynamic responce text 🤭
@@ -234,14 +240,15 @@
         return;
       }
 
-      test.status = tmp_status ? "private" : "public";
+      test.status_id = tmp_status ? "private" : "public";
+      test.category_id = tmp_test_category.category_id;
 
       // set data in db
       let { error } = await supabase.from("test").insert(test);
       if (error) throw error.message;
       // send message to the author 🤗 ux
       setNotificationTest({
-        message: `the '${test.test_name}'' is successfully added!`,
+        message: `the '${test.test_title}' is successfully added!`,
         type: "is-success",
       });
       isLoadingTest = false; // ux
@@ -353,8 +360,8 @@
     try {
       const { data, error } = await supabase
         .from("test")
-        .select("test_id,test_name")
-        .order("test_name", { ascending: false });
+        .select("test_id, test_title")
+        .order("order_test_title", { ascending: false });
       if (error) throw error.message;
       isLoadingTestParent = false; // ux 😉
       return data;
@@ -402,6 +409,8 @@
       isLoadingCategory = false; // ux 😉
     }
   }
+
+  $: console.log(tmp_test_category);
 </script>
 
 <!-- Modal: Select Tags -->
@@ -447,26 +456,47 @@
 <div class="tile">
   <!-- ** section 1: Tests ** -->
   <div class="tile is-vertical mx-4 notification">
-    <!-- Test Unique Name -->
-    <label class="label">test unique name</label>
+    <!-- Category -->
+    <label for="" class="label">Category</label>
     <Field>
-      <Input
+      <Select
+        placeholder="chose category"
+        bind:selected={tmp_test_category}
         expanded
-        placeholder="a unique name like 1 or 2 🥑"
-        bind:value={test.test_name}
-        icon="fire"
-        readonly
-      />
-      <p class="control">
-        <Button
-          type="is-dark"
-          on:click={generateCorrectTestNumber}
-          loading={isLoadingGenerateID}
+        loading={isLoadingCategory}
+      >
+        {#await loadCategories() then data}
+          {#each data as item}
+            <option
+              class="is-capitalized"
+              value={{
+                category_id: item.category_id,
+                category_name: item.category_name,
+              }}>{item.category_name}</option
+            >
+          {/each}
+        {/await}
+        <option
+          value={{
+            category_id: null,
+            category_name: null,
+          }}>Null</option
         >
-          Generate!
-        </Button>
-      </p>
+      </Select>
     </Field>
+    <!-- Generate Unique Title -->
+    <Button
+      type="is-dark block"
+      on:click={generateCorrectTestTitle(
+        tmp_test_category.category_id,
+        tmp_test_category.category_name
+      )}
+      loading={isLoadingGenerateID}
+      disabled={!tmp_test_category.category_id}
+    >
+      Generate Unique Title!
+    </Button>
+
     <!-- Title -->
     <Field label="test title">
       <Input
@@ -484,25 +514,6 @@
         maxlength="1000"
       />
     </Field>
-    <!-- Category -->
-    <label for="" class="label">Category</label>
-    <Field>
-      <Select
-        placeholder="chose category"
-        bind:selected={test.category}
-        expanded
-        loading={isLoadingCategory}
-      >
-        {#await loadCategories() then data}
-          {#each data as item}
-            <option class="is-capitalized" value={item.category_id}
-              >{item.category_name}</option
-            >
-          {/each}
-        {/await}
-        <option value={null}>Null</option>
-      </Select>
-    </Field>
     <!-- Difficuly -->
     <Field label="difficulty">
       <div class="columns is-multiline">
@@ -516,7 +527,7 @@
                 id={d.difficulty_id}
                 type="radio"
                 name="difficulty"
-                bind:group={test.difficulty}
+                bind:group={test.difficulty_id}
                 value={d.difficulty_id}
               />
             </div>
@@ -668,7 +679,7 @@
       >
         {#await promiseLoadTestIDs then data}
           {#each data as item}
-            <option value={item.test_id}>test {item.test_name}</option>
+            <option value={item.test_id}>{item.test_title}</option>
           {/each}
         {/await}
       </Select>
