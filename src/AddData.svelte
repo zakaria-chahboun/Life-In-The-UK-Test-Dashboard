@@ -34,9 +34,6 @@
   // Answers
   let answers = [];
 
-  // tags
-  let tags = [];
-
   // -- Local Variables --
   let tmp_test_id = ""; // for binding
   let tmp_test_category = {
@@ -56,7 +53,6 @@
   let isLoadingQuestion = false; // ui/ux
   let isLoadingTestParent = false; // ui/ux
   let isLoadingGenerateID = false; // ui/ux
-  let isLoadingTags = false; // ui/ux
   let isModalActive = false; // ui/ux
   let notificationTest = {
     showUp: false,
@@ -71,14 +67,9 @@
 
   // To load ids from db
   let promiseLoadTestIDs = loadTestIDs(); // for {await} svelte
-  let tagsFromDB = [];
 
   // ____________ Client Data handling _____________________
 
-  function deleteTag(index) {
-    tags.splice(index, 1);
-    tags = tags;
-  }
   function addAnswer() {
     if (tmp_answer.answer_title == "") return;
     answers.push({
@@ -141,7 +132,6 @@
       question.question_point = 1;
 
       answers = [];
-      tags = [];
 
       tmp_test_id = "";
       tmp_answer.answer_title = "";
@@ -167,7 +157,7 @@
       // generate the Title template: example "Life in the UK Chapter" or "Life in the UK Exam"
       category_name =
         category_name.charAt(0).toUpperCase() + category_name.slice(1); //  uppercase the first letter
-      let template = `Life in the UK ${category_name.replace(/s$/g, "")}`; // Make plural word singluar (only for words that end with an s)
+      let template = `life in the uk ${category_name.replace(/s$/g, "")}`; // Make plural word singluar (only for words that end with an s)
       // check if no tests doc!
       if (data.length === 0) {
         isLoadingGenerateID = !true; // ux
@@ -270,18 +260,13 @@
       if (question.question_title === "") {
         collector.push("question");
       }
+      /*
       if (question.question_hint === "") {
         collector.push("hint");
-      }
+      }*/
       if (question.question_correction === "") {
         collector.push("correction");
       }
-      // Tags in this case optional
-      /*
-      if (tags.length === 0) {
-        collector.push("tags");
-      }
-      */
       if (answers.length === 0) {
         collector.push("answers");
       }
@@ -328,12 +313,12 @@
       // call sql function from db
       const { data, error } = await supabase.rpc("create_question", {
         t_id: tmp_test_id,
-        q_title: question.question_title,
+        q_title: question.question_title.toLocaleLowerCase(),
         q_hint: question.question_hint,
         q_correction: question.question_correction,
         q_point: question.question_point,
         answers,
-        tags,
+        tags: [],
       });
 
       if (error) throw error.message;
@@ -373,26 +358,7 @@
       isLoadingTestParent = false; // ux 😉
     }
   }
-  // Load tags from supabase
-  async function loadTags({ showModal = false }) {
-    isLoadingTags = true; // ux 😉
-    try {
-      const { data, error } = await supabase.from("tag").select("tag_id");
-      if (error) throw error.message;
 
-      isLoadingTags = false; // ux 😉
-      if (showModal) isModalActive = true; // ux 😉
-      tagsFromDB = data.map((e) => e.tag_id);
-      tagsFromDB.sort();
-    } catch (error) {
-      setNotificationQuestion({
-        message: error,
-        type: "is-danger",
-      });
-      isLoadingTags = false; // ux 😉
-      isModalActive = false; // ux
-    }
-  }
   // Load categories from supabase
   async function loadCategories() {
     isLoadingCategory = true; // ux 😉
@@ -412,45 +378,6 @@
 
   $: console.log(tmp_test_category);
 </script>
-
-<!-- Modal: Select Tags -->
-<Modal bind:active={isModalActive}>
-  <div class="modal-background" />
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">Select Tags</p>
-    </header>
-    <section class="modal-card-body">
-      <!-- Content ... -->
-      <div class="columns is-multiline">
-        {#each tagsFromDB as tag}
-          <div class="column is-6">
-            <label class="checkbox">
-              <input type="checkbox" bind:group={tags} value={tag} />
-              {tag}
-            </label>
-          </div>
-        {:else}No tags in database!{/each}
-      </div>
-    </section>
-    <footer class="modal-card-foot">
-      <Button type="is-dark" on:click={() => (isModalActive = false)}>
-        Okay
-      </Button>
-      <Button
-        on:click={() => {
-          tags = [];
-        }}
-      >
-        Reset
-      </Button>
-      <p>
-        You're select {tags.length}
-        {tags.length === 1 ? "tag" : "tags"}
-      </p>
-    </footer>
-  </div>
-</Modal>
 
 <!-- body -->
 <div class="tile">
@@ -579,7 +506,7 @@
       />
     </Field>
     <!-- question hint -->
-    <Field label="hint">
+    <Field label="hint (optinal)">
       <Input
         placeholder="add a hint (to help user) here, 👌"
         type="text"
@@ -605,28 +532,6 @@
         size="is-small"
       />
     </Field>
-    <!-- add tags -->
-    <label class="label">add tags (optional)</label>
-    <Button
-      expanded
-      type="is-dark"
-      on:click={() => loadTags({ showModal: true })}
-      loading={isLoadingTags}
-    >
-      <Icon icon="fire" />
-    </Button>
-    <div class="notification">
-      <!-- display tags -->
-      <Taglist>
-        {#each tags as item, i}
-          <Tag closable type="is-dark" on:close={(e) => deleteTag(i)}
-            >{item}</Tag
-          >
-        {:else}
-          No tags selected 😭!
-        {/each}
-      </Taglist>
-    </div>
     <!-- add answers -->
     <label class="label">add answers</label>
     <Field>

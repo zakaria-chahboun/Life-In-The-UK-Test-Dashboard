@@ -2,7 +2,6 @@
   import "bulma/css/bulma.css";
   import { slide } from "svelte/transition";
   import AddData from "./AddData.svelte";
-  import AddTags from "./AddTags.svelte";
 
   let body = AddData; // by default;
 </script>
@@ -15,7 +14,8 @@
         src="/bambo meeting logo - zaki.png"
         alt="Logo"
         width="112"
-        height="28" />
+        height="28"
+      />
     </a>
   </div>
 </nav>
@@ -31,18 +31,10 @@
         <a
           href="##"
           class="has-text-white-ter"
-          on:click={() => (body = AddData)}>
+          on:click={() => (body = AddData)}
+        >
           <span class="icon"> <i class="fa fa-plus" /> </span>
           Adding Tests & Questions
-        </a>
-      </li>
-      <li>
-        <a
-          href="##"
-          class="has-text-white-ter"
-          on:click={() => (body = AddTags)}>
-          <span class="icon"> <i class="fa fa-plus" /> </span>
-          Adding Tags
         </a>
       </li>
     </ul>
