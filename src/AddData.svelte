@@ -26,7 +26,7 @@
     test_title: "",
     test_description: "",
     status_id: "public",
-    score_to_pass: 35,
+    score_to_pass: 18,
     difficulty_id: "easy",
     category_id: "",
   };
@@ -155,8 +155,8 @@
       if (error) throw error.message;
 
       // generate the Title template: example "Life in the UK Chapter" or "Life in the UK Exam"
-      category_name =
-        category_name.charAt(0).toUpperCase() + category_name.slice(1); //  uppercase the first letter
+      // category_name =
+        // category_name.charAt(0).toUpperCase() + category_name.slice(1); //  uppercase the first letter
       let template = `life in the uk ${category_name.replace(/s$/g, "")}`; // Make plural word singluar (only for words that end with an s)
       // check if no tests doc!
       if (data.length === 0) {
@@ -232,6 +232,7 @@
 
       test.status_id = tmp_status ? "private" : "public";
       test.category_id = tmp_test_category.category_id;
+      test.test_title = test.test_title.toLocaleLowerCase();
 
       // set data in db
       let { error } = await supabase.from("test").insert(test);
@@ -313,7 +314,7 @@
       // call sql function from db
       const { data, error } = await supabase.rpc("create_question", {
         t_id: tmp_test_id,
-        q_title: question.question_title.toLocaleLowerCase(),
+        q_title: question.question_title,
         q_hint: question.question_hint,
         q_correction: question.question_correction,
         q_point: question.question_point,
