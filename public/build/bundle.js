@@ -11901,7 +11901,7 @@ var app = (function () {
         return new SupabaseClient(supabaseUrl, supabaseKey, options);
     };
 
-    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMDE0MzIwMSwiZXhwIjoxOTQ1NzE5MjAxfQ.CsonEZq7BbELLr2Jvqtv985ZiEFbzidGBCEfEtEk2L0';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic2VydmljZV9yb2xlIiwiaWF0IjoxNjMwMTQzMjAxLCJleHAiOjE5NDU3MTkyMDF9.R9KMwp3ZX_7lsugwRlU6iYMQ1b57jrdYOqNJFdWlo48';
 
     const supabaseUrl = 'https://glkylfhlgbxdibbqaqyg.supabase.co';
     const supabase = createClient(supabaseUrl, SUPABASE_KEY);
@@ -11956,7 +11956,7 @@ var app = (function () {
     	return block;
     }
 
-    // (395:43)            {#each data as item}
+    // (396:43)            {#each data as item}
     function create_then_block_2(ctx) {
     	let each_1_anchor;
     	let each_value_3 = /*data*/ ctx[47];
@@ -12017,14 +12017,14 @@ var app = (function () {
     		block,
     		id: create_then_block_2.name,
     		type: "then",
-    		source: "(395:43)            {#each data as item}",
+    		source: "(396:43)            {#each data as item}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (396:10) {#each data as item}
+    // (397:10) {#each data as item}
     function create_each_block_3(ctx) {
     	let option;
     	let t_value = /*item*/ ctx[48].category_name + "";
@@ -12042,7 +12042,7 @@ var app = (function () {
     			};
 
     			option.value = option.__value;
-    			add_location(option, file$c, 396, 12, 11009);
+    			add_location(option, file$c, 397, 12, 11056);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option, anchor);
@@ -12058,7 +12058,7 @@ var app = (function () {
     		block,
     		id: create_each_block_3.name,
     		type: "each",
-    		source: "(396:10) {#each data as item}",
+    		source: "(397:10) {#each data as item}",
     		ctx
     	});
 
@@ -12080,7 +12080,7 @@ var app = (function () {
     	return block;
     }
 
-    // (389:6) <Select         placeholder="chose category"         bind:selected={tmp_test_category}         expanded         loading={isLoadingCategory}       >
+    // (390:6) <Select         placeholder="chose category"         bind:selected={tmp_test_category}         expanded         loading={isLoadingCategory}       >
     function create_default_slot_24(ctx) {
     	let t0;
     	let option;
@@ -12106,7 +12106,7 @@ var app = (function () {
     			option.textContent = "Null";
     			option.__value = { category_id: null, category_name: null };
     			option.value = option.__value;
-    			add_location(option, file$c, 405, 8, 11278);
+    			add_location(option, file$c, 406, 8, 11325);
     		},
     		m: function mount(target, anchor) {
     			info.block.m(target, info.anchor = anchor);
@@ -12137,14 +12137,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_24.name,
     		type: "slot",
-    		source: "(389:6) <Select         placeholder=\\\"chose category\\\"         bind:selected={tmp_test_category}         expanded         loading={isLoadingCategory}       >",
+    		source: "(390:6) <Select         placeholder=\\\"chose category\\\"         bind:selected={tmp_test_category}         expanded         loading={isLoadingCategory}       >",
     		ctx
     	});
 
     	return block;
     }
 
-    // (388:4) <Field>
+    // (389:4) <Field>
     function create_default_slot_23(ctx) {
     	let select;
     	let updating_selected;
@@ -12211,14 +12211,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_23.name,
     		type: "slot",
-    		source: "(388:4) <Field>",
+    		source: "(389:4) <Field>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (415:4) <Button       type="is-dark block"       on:click={generateCorrectTestTitle(         tmp_test_category.category_id,         tmp_test_category.category_name       )}       loading={isLoadingGenerateID}       disabled={!tmp_test_category.category_id}     >
+    // (416:4) <Button       type="is-dark block"       on:click={generateCorrectTestTitle(         tmp_test_category.category_id,         tmp_test_category.category_name       )}       loading={isLoadingGenerateID}       disabled={!tmp_test_category.category_id}     >
     function create_default_slot_22(ctx) {
     	let t;
 
@@ -12238,14 +12238,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_22.name,
     		type: "slot",
-    		source: "(415:4) <Button       type=\\\"is-dark block\\\"       on:click={generateCorrectTestTitle(         tmp_test_category.category_id,         tmp_test_category.category_name       )}       loading={isLoadingGenerateID}       disabled={!tmp_test_category.category_id}     >",
+    		source: "(416:4) <Button       type=\\\"is-dark block\\\"       on:click={generateCorrectTestTitle(         tmp_test_category.category_id,         tmp_test_category.category_name       )}       loading={isLoadingGenerateID}       disabled={!tmp_test_category.category_id}     >",
     		ctx
     	});
 
     	return block;
     }
 
-    // (428:4) <Field label="test title">
+    // (429:4) <Field label="test title">
     function create_default_slot_21(ctx) {
     	let input;
     	let updating_value;
@@ -12304,14 +12304,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_21.name,
     		type: "slot",
-    		source: "(428:4) <Field label=\\\"test title\\\">",
+    		source: "(429:4) <Field label=\\\"test title\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (436:4) <Field label="test description">
+    // (437:4) <Field label="test description">
     function create_default_slot_20(ctx) {
     	let input;
     	let updating_value;
@@ -12371,7 +12371,7 @@ var app = (function () {
     		block,
     		id: create_default_slot_20.name,
     		type: "slot",
-    		source: "(436:4) <Field label=\\\"test description\\\">",
+    		source: "(437:4) <Field label=\\\"test description\\\">",
     		ctx
     	});
 
@@ -12393,7 +12393,7 @@ var app = (function () {
     	return block;
     }
 
-    // (449:8) {:then { data }}
+    // (450:8) {:then { data }}
     function create_then_block_1(ctx) {
     	get_then_context(ctx);
     	let each_1_anchor;
@@ -12483,14 +12483,14 @@ var app = (function () {
     		block,
     		id: create_then_block_1.name,
     		type: "then",
-    		source: "(449:8) {:then { data }}",
+    		source: "(450:8) {:then { data }}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (461:10) {:else}
+    // (462:10) {:else}
     function create_else_block_1(ctx) {
     	let t;
 
@@ -12510,14 +12510,14 @@ var app = (function () {
     		block,
     		id: create_else_block_1.name,
     		type: "else",
-    		source: "(461:10) {:else}",
+    		source: "(462:10) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (450:10) {#each data as d}
+    // (451:10) {#each data as d}
     function create_each_block_2(ctx) {
     	let div;
     	let label;
@@ -12538,16 +12538,16 @@ var app = (function () {
     			input = element("input");
     			t2 = space();
     			attr_dev(label, "for", /*d*/ ctx[56].difficulty_id);
-    			add_location(label, file$c, 451, 14, 12527);
+    			add_location(label, file$c, 452, 14, 12574);
     			attr_dev(input, "id", /*d*/ ctx[56].difficulty_id);
     			attr_dev(input, "type", "radio");
     			attr_dev(input, "name", "difficulty");
     			input.__value = /*d*/ ctx[56].difficulty_id;
     			input.value = input.__value;
     			/*$$binding_groups*/ ctx[26][0].push(input);
-    			add_location(input, file$c, 452, 14, 12596);
+    			add_location(input, file$c, 453, 14, 12643);
     			attr_dev(div, "class", "column");
-    			add_location(div, file$c, 450, 12, 12492);
+    			add_location(div, file$c, 451, 12, 12539);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -12580,14 +12580,14 @@ var app = (function () {
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(450:10) {#each data as d}",
+    		source: "(451:10) {#each data as d}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (447:68)            Loading difficulty ...         {:then { data }}
+    // (448:68)            Loading difficulty ...         {:then { data }}
     function create_pending_block_1(ctx) {
     	let t;
 
@@ -12608,14 +12608,14 @@ var app = (function () {
     		block,
     		id: create_pending_block_1.name,
     		type: "pending",
-    		source: "(447:68)            Loading difficulty ...         {:then { data }}",
+    		source: "(448:68)            Loading difficulty ...         {:then { data }}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (445:4) <Field label="difficulty">
+    // (446:4) <Field label="difficulty">
     function create_default_slot_19(ctx) {
     	let div;
 
@@ -12637,7 +12637,7 @@ var app = (function () {
     			div = element("div");
     			info.block.c();
     			attr_dev(div, "class", "columns is-multiline");
-    			add_location(div, file$c, 445, 6, 12290);
+    			add_location(div, file$c, 446, 6, 12337);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -12666,14 +12666,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_19.name,
     		type: "slot",
-    		source: "(445:4) <Field label=\\\"difficulty\\\">",
+    		source: "(446:4) <Field label=\\\"difficulty\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (466:4) <Field label="Score To Pass">
+    // (467:4) <Field label="Score To Pass">
     function create_default_slot_18(ctx) {
     	let input;
     	let updating_value;
@@ -12734,14 +12734,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_18.name,
     		type: "slot",
-    		source: "(466:4) <Field label=\\\"Score To Pass\\\">",
+    		source: "(467:4) <Field label=\\\"Score To Pass\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (477:6) <Switch bind:checked={tmp_status}>
+    // (478:6) <Switch bind:checked={tmp_status}>
     function create_default_slot_17(ctx) {
     	let t;
 
@@ -12761,14 +12761,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_17.name,
     		type: "slot",
-    		source: "(477:6) <Switch bind:checked={tmp_status}>",
+    		source: "(478:6) <Switch bind:checked={tmp_status}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (480:4) <Button       type="is-dark is-fullwidth"       on:click={(e) => addTest()}       loading={isLoadingTest}       expanded     >
+    // (481:4) <Button       type="is-dark is-fullwidth"       on:click={(e) => addTest()}       loading={isLoadingTest}       expanded     >
     function create_default_slot_16(ctx) {
     	let icon;
     	let current;
@@ -12801,14 +12801,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_16.name,
     		type: "slot",
-    		source: "(480:4) <Button       type=\\\"is-dark is-fullwidth\\\"       on:click={(e) => addTest()}       loading={isLoadingTest}       expanded     >",
+    		source: "(481:4) <Button       type=\\\"is-dark is-fullwidth\\\"       on:click={(e) => addTest()}       loading={isLoadingTest}       expanded     >",
     		ctx
     	});
 
     	return block;
     }
 
-    // (489:4) <Notification       icon={true}       type={notificationTest.type}       bind:active={notificationTest.showUp}     >
+    // (490:4) <Notification       icon={true}       type={notificationTest.type}       bind:active={notificationTest.showUp}     >
     function create_default_slot_15(ctx) {
     	let t_value = /*notificationTest*/ ctx[12].message + "";
     	let t;
@@ -12832,14 +12832,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_15.name,
     		type: "slot",
-    		source: "(489:4) <Notification       icon={true}       type={notificationTest.type}       bind:active={notificationTest.showUp}     >",
+    		source: "(490:4) <Notification       icon={true}       type={notificationTest.type}       bind:active={notificationTest.showUp}     >",
     		ctx
     	});
 
     	return block;
     }
 
-    // (501:4) <Field label="question">
+    // (502:4) <Field label="question">
     function create_default_slot_14(ctx) {
     	let input;
     	let updating_value;
@@ -12898,14 +12898,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_14.name,
     		type: "slot",
-    		source: "(501:4) <Field label=\\\"question\\\">",
+    		source: "(502:4) <Field label=\\\"question\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (509:4) <Field label="hint (optinal)">
+    // (510:4) <Field label="hint (optinal)">
     function create_default_slot_13(ctx) {
     	let input;
     	let updating_value;
@@ -12965,14 +12965,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_13.name,
     		type: "slot",
-    		source: "(509:4) <Field label=\\\"hint (optinal)\\\">",
+    		source: "(510:4) <Field label=\\\"hint (optinal)\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (518:4) <Field label="Point">
+    // (519:4) <Field label="Point">
     function create_default_slot_12(ctx) {
     	let input;
     	let updating_value;
@@ -13031,14 +13031,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_12.name,
     		type: "slot",
-    		source: "(518:4) <Field label=\\\"Point\\\">",
+    		source: "(519:4) <Field label=\\\"Point\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (526:4) <Field label="correction">
+    // (527:4) <Field label="correction">
     function create_default_slot_11(ctx) {
     	let input;
     	let updating_value;
@@ -13099,14 +13099,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_11.name,
     		type: "slot",
-    		source: "(526:4) <Field label=\\\"correction\\\">",
+    		source: "(527:4) <Field label=\\\"correction\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (545:8) <Select placeholder="is correct?" bind:selected={tmp_answer.is_correct}>
+    // (546:8) <Select placeholder="is correct?" bind:selected={tmp_answer.is_correct}>
     function create_default_slot_10(ctx) {
     	let option0;
     	let t1;
@@ -13121,10 +13121,10 @@ var app = (function () {
     			option1.textContent = "wrong";
     			option0.__value = true;
     			option0.value = option0.__value;
-    			add_location(option0, file$c, 545, 10, 15136);
+    			add_location(option0, file$c, 546, 10, 15183);
     			option1.__value = false;
     			option1.value = option1.__value;
-    			add_location(option1, file$c, 546, 10, 15184);
+    			add_location(option1, file$c, 547, 10, 15231);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option0, anchor);
@@ -13142,14 +13142,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_10.name,
     		type: "slot",
-    		source: "(545:8) <Select placeholder=\\\"is correct?\\\" bind:selected={tmp_answer.is_correct}>",
+    		source: "(546:8) <Select placeholder=\\\"is correct?\\\" bind:selected={tmp_answer.is_correct}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (551:8) <Button type="is-dark" on:click={(e) => addAnswer()}>
+    // (552:8) <Button type="is-dark" on:click={(e) => addAnswer()}>
     function create_default_slot_9(ctx) {
     	let icon;
     	let current;
@@ -13182,14 +13182,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_9.name,
     		type: "slot",
-    		source: "(551:8) <Button type=\\\"is-dark\\\" on:click={(e) => addAnswer()}>",
+    		source: "(552:8) <Button type=\\\"is-dark\\\" on:click={(e) => addAnswer()}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (537:4) <Field>
+    // (538:4) <Field>
     function create_default_slot_8(ctx) {
     	let input;
     	let updating_value;
@@ -13257,9 +13257,9 @@ var app = (function () {
     			p1 = element("p");
     			create_component(button.$$.fragment);
     			attr_dev(p0, "class", "control");
-    			add_location(p0, file$c, 543, 6, 15025);
+    			add_location(p0, file$c, 544, 6, 15072);
     			attr_dev(p1, "class", "control");
-    			add_location(p1, file$c, 549, 6, 15256);
+    			add_location(p1, file$c, 550, 6, 15303);
     		},
     		m: function mount(target, anchor) {
     			mount_component(input, target, anchor);
@@ -13330,14 +13330,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_8.name,
     		type: "slot",
-    		source: "(537:4) <Field>",
+    		source: "(538:4) <Field>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (572:4) {:else}
+    // (573:4) {:else}
     function create_else_block$3(ctx) {
     	let div;
 
@@ -13346,7 +13346,7 @@ var app = (function () {
     			div = element("div");
     			div.textContent = "No answers in this question 😭!";
     			attr_dev(div, "class", "notification");
-    			add_location(div, file$c, 572, 6, 15977);
+    			add_location(div, file$c, 573, 6, 16024);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -13360,14 +13360,14 @@ var app = (function () {
     		block,
     		id: create_else_block$3.name,
     		type: "else",
-    		source: "(572:4) {:else}",
+    		source: "(573:4) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (560:10) <Button type="is-static">
+    // (561:10) <Button type="is-static">
     function create_default_slot_7(ctx) {
     	let t_value = /*i*/ ctx[54] + 1 + "";
     	let t;
@@ -13389,14 +13389,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_7.name,
     		type: "slot",
-    		source: "(560:10) <Button type=\\\"is-static\\\">",
+    		source: "(561:10) <Button type=\\\"is-static\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (567:10) <Button type="is-danger" on:click={() => deleteAnswer(i)}>
+    // (568:10) <Button type="is-danger" on:click={() => deleteAnswer(i)}>
     function create_default_slot_6(ctx) {
     	let icon;
     	let current;
@@ -13433,14 +13433,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_6.name,
     		type: "slot",
-    		source: "(567:10) <Button type=\\\"is-danger\\\" on:click={() => deleteAnswer(i)}>",
+    		source: "(568:10) <Button type=\\\"is-danger\\\" on:click={() => deleteAnswer(i)}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (558:6) <Field>
+    // (559:6) <Field>
     function create_default_slot_5(ctx) {
     	let p0;
     	let button0;
@@ -13510,11 +13510,11 @@ var app = (function () {
     			create_component(button1.$$.fragment);
     			t3 = space();
     			attr_dev(p0, "class", "control");
-    			add_location(p0, file$c, 558, 8, 15517);
+    			add_location(p0, file$c, 559, 8, 15564);
     			attr_dev(p1, "class", "control");
-    			add_location(p1, file$c, 562, 8, 15667);
+    			add_location(p1, file$c, 563, 8, 15714);
     			attr_dev(p2, "class", "control");
-    			add_location(p2, file$c, 565, 8, 15784);
+    			add_location(p2, file$c, 566, 8, 15831);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p0, anchor);
@@ -13587,14 +13587,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_5.name,
     		type: "slot",
-    		source: "(558:6) <Field>",
+    		source: "(559:6) <Field>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (557:4) {#each answers as { answer_title, is_correct }
+    // (558:4) {#each answers as { answer_title, is_correct }
     function create_each_block_1(ctx) {
     	let field;
     	let current;
@@ -13642,7 +13642,7 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(557:4) {#each answers as { answer_title, is_correct }",
+    		source: "(558:4) {#each answers as { answer_title, is_correct }",
     		ctx
     	});
 
@@ -13664,7 +13664,7 @@ var app = (function () {
     	return block;
     }
 
-    // (585:45)            {#each data as item}
+    // (586:45)            {#each data as item}
     function create_then_block(ctx) {
     	let each_1_anchor;
     	let each_value = /*data*/ ctx[47];
@@ -13725,14 +13725,14 @@ var app = (function () {
     		block,
     		id: create_then_block.name,
     		type: "then",
-    		source: "(585:45)            {#each data as item}",
+    		source: "(586:45)            {#each data as item}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (586:10) {#each data as item}
+    // (587:10) {#each data as item}
     function create_each_block(ctx) {
     	let option;
     	let t_value = /*item*/ ctx[48].test_title + "";
@@ -13745,7 +13745,7 @@ var app = (function () {
     			t = text(t_value);
     			option.__value = option_value_value = /*item*/ ctx[48].test_id;
     			option.value = option.__value;
-    			add_location(option, file$c, 586, 12, 16384);
+    			add_location(option, file$c, 587, 12, 16431);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option, anchor);
@@ -13768,7 +13768,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(586:10) {#each data as item}",
+    		source: "(587:10) {#each data as item}",
     		ctx
     	});
 
@@ -13790,7 +13790,7 @@ var app = (function () {
     	return block;
     }
 
-    // (579:6) <Select         placeholder="chose one"         bind:selected={tmp_test_id}         expanded         loading={isLoadingTestParent}       >
+    // (580:6) <Select         placeholder="chose one"         bind:selected={tmp_test_id}         expanded         loading={isLoadingTestParent}       >
     function create_default_slot_4(ctx) {
     	let await_block_anchor;
     	let promise;
@@ -13841,14 +13841,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_4.name,
     		type: "slot",
-    		source: "(579:6) <Select         placeholder=\\\"chose one\\\"         bind:selected={tmp_test_id}         expanded         loading={isLoadingTestParent}       >",
+    		source: "(580:6) <Select         placeholder=\\\"chose one\\\"         bind:selected={tmp_test_id}         expanded         loading={isLoadingTestParent}       >",
     		ctx
     	});
 
     	return block;
     }
 
-    // (592:8) <Button           type="is-dark"           on:click={(e) => (promiseLoadTestIDs = loadTestIDs())}         >
+    // (593:8) <Button           type="is-dark"           on:click={(e) => (promiseLoadTestIDs = loadTestIDs())}         >
     function create_default_slot_3(ctx) {
     	let icon;
     	let current;
@@ -13881,14 +13881,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_3.name,
     		type: "slot",
-    		source: "(592:8) <Button           type=\\\"is-dark\\\"           on:click={(e) => (promiseLoadTestIDs = loadTestIDs())}         >",
+    		source: "(593:8) <Button           type=\\\"is-dark\\\"           on:click={(e) => (promiseLoadTestIDs = loadTestIDs())}         >",
     		ctx
     	});
 
     	return block;
     }
 
-    // (578:4) <Field>
+    // (579:4) <Field>
     function create_default_slot_2(ctx) {
     	let select;
     	let updating_selected;
@@ -13934,7 +13934,7 @@ var app = (function () {
     			p = element("p");
     			create_component(button.$$.fragment);
     			attr_dev(p, "class", "control");
-    			add_location(p, file$c, 590, 6, 16497);
+    			add_location(p, file$c, 591, 6, 16544);
     		},
     		m: function mount(target, anchor) {
     			mount_component(select, target, anchor);
@@ -13989,14 +13989,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_2.name,
     		type: "slot",
-    		source: "(578:4) <Field>",
+    		source: "(579:4) <Field>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (601:4) <Button       type="is-dark is-fullwidth"       on:click={(e) => addQuestion()}       loading={isLoadingQuestion}       expanded     >
+    // (602:4) <Button       type="is-dark is-fullwidth"       on:click={(e) => addQuestion()}       loading={isLoadingQuestion}       expanded     >
     function create_default_slot_1$1(ctx) {
     	let icon;
     	let current;
@@ -14029,14 +14029,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1$1.name,
     		type: "slot",
-    		source: "(601:4) <Button       type=\\\"is-dark is-fullwidth\\\"       on:click={(e) => addQuestion()}       loading={isLoadingQuestion}       expanded     >",
+    		source: "(602:4) <Button       type=\\\"is-dark is-fullwidth\\\"       on:click={(e) => addQuestion()}       loading={isLoadingQuestion}       expanded     >",
     		ctx
     	});
 
     	return block;
     }
 
-    // (610:4) <Notification       icon={true}       type={notificationQuestion.type}       bind:active={notificationQuestion.showUp}     >
+    // (611:4) <Notification       icon={true}       type={notificationQuestion.type}       bind:active={notificationQuestion.showUp}     >
     function create_default_slot$1(ctx) {
     	let t_value = /*notificationQuestion*/ ctx[13].message + "";
     	let t;
@@ -14060,7 +14060,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$1.name,
     		type: "slot",
-    		source: "(610:4) <Notification       icon={true}       type={notificationQuestion.type}       bind:active={notificationQuestion.showUp}     >",
+    		source: "(611:4) <Notification       icon={true}       type={notificationQuestion.type}       bind:active={notificationQuestion.showUp}     >",
     		ctx
     	});
 
@@ -14392,19 +14392,19 @@ var app = (function () {
     			create_component(notification1.$$.fragment);
     			attr_dev(label0, "for", "");
     			attr_dev(label0, "class", "label");
-    			add_location(label0, file$c, 386, 4, 10711);
+    			add_location(label0, file$c, 387, 4, 10758);
     			attr_dev(div0, "class", "field");
-    			add_location(div0, file$c, 475, 4, 13198);
+    			add_location(div0, file$c, 476, 4, 13245);
     			attr_dev(div1, "class", "tile is-vertical mx-4 notification");
-    			add_location(div1, file$c, 384, 2, 10636);
+    			add_location(div1, file$c, 385, 2, 10683);
     			attr_dev(label1, "class", "label");
-    			add_location(label1, file$c, 535, 4, 14815);
+    			add_location(label1, file$c, 536, 4, 14862);
     			attr_dev(label2, "class", "label");
-    			add_location(label2, file$c, 576, 4, 16093);
+    			add_location(label2, file$c, 577, 4, 16140);
     			attr_dev(div2, "class", "tile is-vertical mr-4 notification");
-    			add_location(div2, file$c, 498, 2, 13775);
+    			add_location(div2, file$c, 499, 2, 13822);
     			attr_dev(div3, "class", "tile");
-    			add_location(div3, file$c, 382, 0, 10581);
+    			add_location(div3, file$c, 383, 0, 10628);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -14754,7 +14754,7 @@ var app = (function () {
     		test_title: "",
     		test_description: "",
     		status_id: "public",
-    		score_to_pass: 35,
+    		score_to_pass: 18,
     		difficulty_id: "easy",
     		category_id: ""
     	};
@@ -14882,8 +14882,8 @@ var app = (function () {
     			if (error) throw error.message;
 
     			// generate the Title template: example "Life in the UK Chapter" or "Life in the UK Exam"
-    			category_name = category_name.charAt(0).toUpperCase() + category_name.slice(1); //  uppercase the first letter
-
+    			// category_name =
+    			// category_name.charAt(0).toUpperCase() + category_name.slice(1); //  uppercase the first letter
     			let template = `life in the uk ${category_name.replace(/s$/g, "")}`; // Make plural word singluar (only for words that end with an s)
 
     			// check if no tests doc!
@@ -14964,6 +14964,7 @@ var app = (function () {
 
     			$$invalidate(2, test.status_id = tmp_status ? "private" : "public", test);
     			$$invalidate(2, test.category_id = tmp_test_category.category_id, test);
+    			$$invalidate(2, test.test_title = test.test_title.toLocaleLowerCase(), test);
 
     			// set data in db
     			let { error } = await supabase.from("test").insert(test);
@@ -15052,7 +15053,7 @@ var app = (function () {
     			// call sql function from db
     			const { data, error } = await supabase.rpc("create_question", {
     				t_id: tmp_test_id,
-    				q_title: question.question_title.toLocaleLowerCase(),
+    				q_title: question.question_title,
     				q_hint: question.question_hint,
     				q_correction: question.question_correction,
     				q_point: question.question_point,
