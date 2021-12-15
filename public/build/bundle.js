@@ -187,6 +187,9 @@ var app = (function () {
     function children(element) {
         return Array.from(element.childNodes);
     }
+    function set_input_value(input, value) {
+        input.value = value == null ? '' : value;
+    }
     function set_style(node, key, value, important) {
         node.style.setProperty(key, value, important ? 'important' : '');
     }
@@ -12039,7 +12042,7 @@ var app = (function () {
     			};
 
     			option.value = option.__value;
-    			add_location(option, file$c, 396, 12, 11006);
+    			add_location(option, file$c, 396, 12, 11009);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option, anchor);
@@ -12103,7 +12106,7 @@ var app = (function () {
     			option.textContent = "Null";
     			option.__value = { category_id: null, category_name: null };
     			option.value = option.__value;
-    			add_location(option, file$c, 405, 8, 11275);
+    			add_location(option, file$c, 405, 8, 11278);
     		},
     		m: function mount(target, anchor) {
     			info.block.m(target, info.anchor = anchor);
@@ -12535,16 +12538,16 @@ var app = (function () {
     			input = element("input");
     			t2 = space();
     			attr_dev(label, "for", /*d*/ ctx[56].difficulty_id);
-    			add_location(label, file$c, 451, 14, 12524);
+    			add_location(label, file$c, 451, 14, 12527);
     			attr_dev(input, "id", /*d*/ ctx[56].difficulty_id);
     			attr_dev(input, "type", "radio");
     			attr_dev(input, "name", "difficulty");
     			input.__value = /*d*/ ctx[56].difficulty_id;
     			input.value = input.__value;
     			/*$$binding_groups*/ ctx[26][0].push(input);
-    			add_location(input, file$c, 452, 14, 12593);
+    			add_location(input, file$c, 452, 14, 12596);
     			attr_dev(div, "class", "column");
-    			add_location(div, file$c, 450, 12, 12489);
+    			add_location(div, file$c, 450, 12, 12492);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -12634,7 +12637,7 @@ var app = (function () {
     			div = element("div");
     			info.block.c();
     			attr_dev(div, "class", "columns is-multiline");
-    			add_location(div, file$c, 445, 6, 12287);
+    			add_location(div, file$c, 445, 6, 12290);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -13118,10 +13121,10 @@ var app = (function () {
     			option1.textContent = "wrong";
     			option0.__value = true;
     			option0.value = option0.__value;
-    			add_location(option0, file$c, 545, 10, 15133);
+    			add_location(option0, file$c, 545, 10, 15136);
     			option1.__value = false;
     			option1.value = option1.__value;
-    			add_location(option1, file$c, 546, 10, 15181);
+    			add_location(option1, file$c, 546, 10, 15184);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option0, anchor);
@@ -13254,9 +13257,9 @@ var app = (function () {
     			p1 = element("p");
     			create_component(button.$$.fragment);
     			attr_dev(p0, "class", "control");
-    			add_location(p0, file$c, 543, 6, 15022);
+    			add_location(p0, file$c, 543, 6, 15025);
     			attr_dev(p1, "class", "control");
-    			add_location(p1, file$c, 549, 6, 15253);
+    			add_location(p1, file$c, 549, 6, 15256);
     		},
     		m: function mount(target, anchor) {
     			mount_component(input, target, anchor);
@@ -13343,7 +13346,7 @@ var app = (function () {
     			div = element("div");
     			div.textContent = "No answers in this question 😭!";
     			attr_dev(div, "class", "notification");
-    			add_location(div, file$c, 572, 6, 15974);
+    			add_location(div, file$c, 572, 6, 15977);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -13507,11 +13510,11 @@ var app = (function () {
     			create_component(button1.$$.fragment);
     			t3 = space();
     			attr_dev(p0, "class", "control");
-    			add_location(p0, file$c, 558, 8, 15514);
+    			add_location(p0, file$c, 558, 8, 15517);
     			attr_dev(p1, "class", "control");
-    			add_location(p1, file$c, 562, 8, 15664);
+    			add_location(p1, file$c, 562, 8, 15667);
     			attr_dev(p2, "class", "control");
-    			add_location(p2, file$c, 565, 8, 15781);
+    			add_location(p2, file$c, 565, 8, 15784);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p0, anchor);
@@ -13742,7 +13745,7 @@ var app = (function () {
     			t = text(t_value);
     			option.__value = option_value_value = /*item*/ ctx[48].test_id;
     			option.value = option.__value;
-    			add_location(option, file$c, 586, 12, 16381);
+    			add_location(option, file$c, 586, 12, 16384);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option, anchor);
@@ -13931,7 +13934,7 @@ var app = (function () {
     			p = element("p");
     			create_component(button.$$.fragment);
     			attr_dev(p, "class", "control");
-    			add_location(p, file$c, 590, 6, 16494);
+    			add_location(p, file$c, 590, 6, 16497);
     		},
     		m: function mount(target, anchor) {
     			mount_component(select, target, anchor);
@@ -14389,19 +14392,19 @@ var app = (function () {
     			create_component(notification1.$$.fragment);
     			attr_dev(label0, "for", "");
     			attr_dev(label0, "class", "label");
-    			add_location(label0, file$c, 386, 4, 10708);
+    			add_location(label0, file$c, 386, 4, 10711);
     			attr_dev(div0, "class", "field");
-    			add_location(div0, file$c, 475, 4, 13195);
+    			add_location(div0, file$c, 475, 4, 13198);
     			attr_dev(div1, "class", "tile is-vertical mx-4 notification");
-    			add_location(div1, file$c, 384, 2, 10633);
+    			add_location(div1, file$c, 384, 2, 10636);
     			attr_dev(label1, "class", "label");
-    			add_location(label1, file$c, 535, 4, 14812);
+    			add_location(label1, file$c, 535, 4, 14815);
     			attr_dev(label2, "class", "label");
-    			add_location(label2, file$c, 576, 4, 16090);
+    			add_location(label2, file$c, 576, 4, 16093);
     			attr_dev(div2, "class", "tile is-vertical mr-4 notification");
-    			add_location(div2, file$c, 498, 2, 13772);
+    			add_location(div2, file$c, 498, 2, 13775);
     			attr_dev(div3, "class", "tile");
-    			add_location(div3, file$c, 382, 0, 10578);
+    			add_location(div3, file$c, 382, 0, 10581);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -15053,9 +15056,8 @@ var app = (function () {
     				q_hint: question.question_hint,
     				q_correction: question.question_correction,
     				q_point: question.question_point,
-    				answers,
-    				tags: []
-    			});
+    				answers
+    			}); // tags: [],
 
     			if (error) throw error.message;
 
@@ -15327,7 +15329,163 @@ var app = (function () {
     /* src/main.svelte generated by Svelte v3.31.2 */
     const file$d = "src/main.svelte";
 
-    // (45:6) {#key body}
+    // (86:6) {:else}
+    function create_else_block$4(ctx) {
+    	let li;
+    	let button;
+    	let mounted;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			li = element("li");
+    			button = element("button");
+    			button.textContent = "Logout";
+    			attr_dev(button, "class", "button is-danger is-fullwidth");
+    			toggle_class(button, "is-loading", /*isLoading*/ ctx[3]);
+    			add_location(button, file$d, 87, 10, 2253);
+    			add_location(li, file$d, 86, 8, 2238);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, li, anchor);
+    			append_dev(li, button);
+
+    			if (!mounted) {
+    				dispose = listen_dev(button, "click", /*click_handler*/ ctx[7], false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*isLoading*/ 8) {
+    				toggle_class(button, "is-loading", /*isLoading*/ ctx[3]);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(li);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_else_block$4.name,
+    		type: "else",
+    		source: "(86:6) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (54:6) {#if !supabase.auth.user()}
+    function create_if_block$8(ctx) {
+    	let li0;
+    	let button;
+    	let t1;
+    	let li1;
+    	let div2;
+    	let div0;
+    	let input0;
+    	let t2;
+    	let div1;
+    	let input1;
+    	let mounted;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			li0 = element("li");
+    			button = element("button");
+    			button.textContent = "Login";
+    			t1 = space();
+    			li1 = element("li");
+    			div2 = element("div");
+    			div0 = element("div");
+    			input0 = element("input");
+    			t2 = space();
+    			div1 = element("div");
+    			input1 = element("input");
+    			attr_dev(button, "class", "button is-primary is-fullwidth");
+    			toggle_class(button, "is-loading", /*isLoading*/ ctx[3]);
+    			add_location(button, file$d, 55, 10, 1414);
+    			add_location(li0, file$d, 54, 8, 1399);
+    			attr_dev(input0, "type", "text");
+    			attr_dev(input0, "class", "input");
+    			attr_dev(input0, "placeholder", "email");
+    			attr_dev(input0, "autocomplete", "email");
+    			add_location(input0, file$d, 66, 14, 1698);
+    			attr_dev(div0, "class", "control");
+    			add_location(div0, file$d, 65, 12, 1662);
+    			attr_dev(input1, "type", "password");
+    			attr_dev(input1, "class", "input");
+    			attr_dev(input1, "placeholder", "password");
+    			attr_dev(input1, "autocomplete", "current-password");
+    			add_location(input1, file$d, 75, 14, 1955);
+    			attr_dev(div1, "class", "control");
+    			add_location(div1, file$d, 74, 12, 1919);
+    			attr_dev(div2, "class", "field");
+    			add_location(div2, file$d, 64, 10, 1630);
+    			add_location(li1, file$d, 63, 8, 1615);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, li0, anchor);
+    			append_dev(li0, button);
+    			insert_dev(target, t1, anchor);
+    			insert_dev(target, li1, anchor);
+    			append_dev(li1, div2);
+    			append_dev(div2, div0);
+    			append_dev(div0, input0);
+    			set_input_value(input0, /*email*/ ctx[1]);
+    			append_dev(div2, t2);
+    			append_dev(div2, div1);
+    			append_dev(div1, input1);
+    			set_input_value(input1, /*password*/ ctx[2]);
+
+    			if (!mounted) {
+    				dispose = [
+    					listen_dev(button, "click", /*login*/ ctx[4], false, false, false),
+    					listen_dev(input0, "input", /*input0_input_handler*/ ctx[5]),
+    					listen_dev(input1, "input", /*input1_input_handler*/ ctx[6])
+    				];
+
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*isLoading*/ 8) {
+    				toggle_class(button, "is-loading", /*isLoading*/ ctx[3]);
+    			}
+
+    			if (dirty & /*email*/ 2 && input0.value !== /*email*/ ctx[1]) {
+    				set_input_value(input0, /*email*/ ctx[1]);
+    			}
+
+    			if (dirty & /*password*/ 4 && input1.value !== /*password*/ ctx[2]) {
+    				set_input_value(input1, /*password*/ ctx[2]);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(li0);
+    			if (detaching) detach_dev(t1);
+    			if (detaching) detach_dev(li1);
+    			mounted = false;
+    			run_all(dispose);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$8.name,
+    		type: "if",
+    		source: "(54:6) {#if !supabase.auth.user()}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (117:6) {#key body}
     function create_key_block(ctx) {
     	let div;
     	let switch_instance;
@@ -15347,7 +15505,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			if (switch_instance) create_component(switch_instance.$$.fragment);
-    			add_location(div, file$d, 45, 8, 1156);
+    			add_location(div, file$d, 117, 8, 3007);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -15409,7 +15567,7 @@ var app = (function () {
     		block,
     		id: create_key_block.name,
     		type: "key",
-    		source: "(45:6) {#key body}",
+    		source: "(117:6) {#key body}",
     		ctx
     	});
 
@@ -15423,25 +15581,38 @@ var app = (function () {
     	let img;
     	let img_src_value;
     	let t0;
+    	let div2;
+    	let div1;
+    	let a1;
+    	let t2;
     	let section;
     	let aside;
     	let p0;
-    	let t1;
-    	let p1;
     	let t3;
+    	let p1;
+    	let t5;
     	let ul;
+    	let t6;
     	let li;
-    	let a1;
+    	let a2;
     	let span;
     	let i;
-    	let t4;
-    	let t5;
-    	let div2;
-    	let div1;
+    	let t7;
+    	let t8;
+    	let div4;
+    	let div3;
     	let previous_key = /*body*/ ctx[0];
     	let current;
     	let mounted;
     	let dispose;
+
+    	function select_block_type(ctx, dirty) {
+    		if (!supabase.auth.user()) return create_if_block$8;
+    		return create_else_block$4;
+    	}
+
+    	let current_block_type = select_block_type();
+    	let if_block = current_block_type(ctx);
     	let key_block = create_key_block(ctx);
 
     	const block = {
@@ -15451,60 +15622,76 @@ var app = (function () {
     			a0 = element("a");
     			img = element("img");
     			t0 = space();
+    			div2 = element("div");
+    			div1 = element("div");
+    			a1 = element("a");
+    			a1.textContent = `${supabase.auth.user() ? supabase.auth.user().email : ""}`;
+    			t2 = space();
     			section = element("section");
     			aside = element("aside");
     			p0 = element("p");
-    			t1 = space();
+    			t3 = space();
     			p1 = element("p");
     			p1.textContent = "Managment";
-    			t3 = space();
+    			t5 = space();
     			ul = element("ul");
+    			if_block.c();
+    			t6 = space();
     			li = element("li");
-    			a1 = element("a");
+    			a2 = element("a");
     			span = element("span");
     			i = element("i");
-    			t4 = text("\n          Adding Tests & Questions");
-    			t5 = space();
-    			div2 = element("div");
-    			div1 = element("div");
+    			t7 = text("\n          Adding Tests & Questions");
+    			t8 = space();
+    			div4 = element("div");
+    			div3 = element("div");
     			key_block.c();
     			if (img.src !== (img_src_value = "/bambo meeting logo - zaki.png")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "Logo");
     			attr_dev(img, "width", "112");
     			attr_dev(img, "height", "28");
-    			add_location(img, file$d, 12, 6, 342);
+    			add_location(img, file$d, 29, 6, 686);
     			attr_dev(a0, "class", "navbar-item");
     			attr_dev(a0, "href", "/");
-    			add_location(a0, file$d, 11, 4, 303);
+    			add_location(a0, file$d, 28, 4, 647);
     			attr_dev(div0, "class", "navbar-brand");
-    			add_location(div0, file$d, 10, 2, 272);
+    			add_location(div0, file$d, 27, 2, 616);
+    			attr_dev(a1, "href", "#");
+    			attr_dev(a1, "class", "navbar-item");
+    			add_location(a1, file$d, 39, 6, 934);
+    			attr_dev(div1, "class", "navbar-start");
+    			set_style(div1, "flex-grow", "1");
+    			set_style(div1, "justify-content", "center");
+    			add_location(div1, file$d, 38, 4, 854);
+    			attr_dev(div2, "class", "navbar-menu");
+    			add_location(div2, file$d, 37, 2, 824);
     			attr_dev(nav, "class", "navbar is-dark");
     			attr_dev(nav, "role", "navigation");
     			attr_dev(nav, "aria-label", "main navigation");
-    			add_location(nav, file$d, 9, 0, 194);
+    			add_location(nav, file$d, 26, 0, 538);
     			attr_dev(p0, "class", "mb-6");
-    			add_location(p0, file$d, 26, 4, 667);
+    			add_location(p0, file$d, 50, 4, 1252);
     			attr_dev(p1, "class", "menu-label has-text-white-ter");
-    			add_location(p1, file$d, 27, 4, 690);
+    			add_location(p1, file$d, 51, 4, 1275);
     			attr_dev(i, "class", "fa fa-plus");
-    			add_location(i, file$d, 35, 30, 935);
+    			add_location(i, file$d, 107, 30, 2786);
     			attr_dev(span, "class", "icon");
-    			add_location(span, file$d, 35, 10, 915);
-    			attr_dev(a1, "href", "##");
-    			attr_dev(a1, "class", "has-text-white-ter");
-    			add_location(a1, file$d, 30, 8, 791);
-    			add_location(li, file$d, 29, 6, 778);
+    			add_location(span, file$d, 107, 10, 2766);
+    			attr_dev(a2, "href", "##");
+    			attr_dev(a2, "class", "has-text-white-ter");
+    			add_location(a2, file$d, 102, 8, 2642);
+    			add_location(li, file$d, 101, 6, 2629);
     			attr_dev(ul, "class", "menu-list");
-    			add_location(ul, file$d, 28, 4, 749);
+    			add_location(ul, file$d, 52, 4, 1334);
     			attr_dev(aside, "class", "menu column is-2 has-background-dark");
-    			add_location(aside, file$d, 25, 2, 610);
-    			attr_dev(div1, "class", "section");
-    			add_location(div1, file$d, 43, 4, 1108);
-    			attr_dev(div2, "class", "container column is-10");
-    			add_location(div2, file$d, 42, 2, 1067);
+    			add_location(aside, file$d, 49, 2, 1195);
+    			attr_dev(div3, "class", "section");
+    			add_location(div3, file$d, 115, 4, 2959);
+    			attr_dev(div4, "class", "container column is-10");
+    			add_location(div4, file$d, 114, 2, 2918);
     			attr_dev(section, "class", "main-content columns is-fullheight");
     			set_style(section, "min-height", "100%");
-    			add_location(section, file$d, 23, 0, 512);
+    			add_location(section, file$d, 47, 0, 1097);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -15514,31 +15701,39 @@ var app = (function () {
     			append_dev(nav, div0);
     			append_dev(div0, a0);
     			append_dev(a0, img);
-    			insert_dev(target, t0, anchor);
+    			append_dev(nav, t0);
+    			append_dev(nav, div2);
+    			append_dev(div2, div1);
+    			append_dev(div1, a1);
+    			insert_dev(target, t2, anchor);
     			insert_dev(target, section, anchor);
     			append_dev(section, aside);
     			append_dev(aside, p0);
-    			append_dev(aside, t1);
-    			append_dev(aside, p1);
     			append_dev(aside, t3);
+    			append_dev(aside, p1);
+    			append_dev(aside, t5);
     			append_dev(aside, ul);
+    			if_block.m(ul, null);
+    			append_dev(ul, t6);
     			append_dev(ul, li);
-    			append_dev(li, a1);
-    			append_dev(a1, span);
+    			append_dev(li, a2);
+    			append_dev(a2, span);
     			append_dev(span, i);
-    			append_dev(a1, t4);
-    			append_dev(section, t5);
-    			append_dev(section, div2);
-    			append_dev(div2, div1);
-    			key_block.m(div1, null);
+    			append_dev(a2, t7);
+    			append_dev(section, t8);
+    			append_dev(section, div4);
+    			append_dev(div4, div3);
+    			key_block.m(div3, null);
     			current = true;
 
     			if (!mounted) {
-    				dispose = listen_dev(a1, "click", /*click_handler*/ ctx[1], false, false, false);
+    				dispose = listen_dev(a2, "click", /*click_handler_1*/ ctx[8], false, false, false);
     				mounted = true;
     			}
     		},
     		p: function update(ctx, [dirty]) {
+    			if_block.p(ctx, dirty);
+
     			if (dirty & /*body*/ 1 && safe_not_equal(previous_key, previous_key = /*body*/ ctx[0])) {
     				group_outros();
     				transition_out(key_block, 1, 1, noop);
@@ -15546,7 +15741,7 @@ var app = (function () {
     				key_block = create_key_block(ctx);
     				key_block.c();
     				transition_in(key_block);
-    				key_block.m(div1, null);
+    				key_block.m(div3, null);
     			} else {
     				key_block.p(ctx, dirty);
     			}
@@ -15562,8 +15757,9 @@ var app = (function () {
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(nav);
-    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(t2);
     			if (detaching) detach_dev(section);
+    			if_block.d();
     			key_block.d(detaching);
     			mounted = false;
     			dispose();
@@ -15585,24 +15781,83 @@ var app = (function () {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Main", slots, []);
     	let body = AddData; // by default;
+
+    	// Login
+    	let email;
+
+    	let password;
+    	let isLoading = false;
+
+    	async function login() {
+    		$$invalidate(3, isLoading = true);
+    		const { error } = await supabase.auth.signIn({ email, password });
+    		$$invalidate(3, isLoading = false);
+
+    		if (error) {
+    			alert(error.message);
+    		} else {
+    			location.reload();
+    		}
+    	}
+
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Main> was created with unknown prop '${key}'`);
     	});
 
-    	const click_handler = () => $$invalidate(0, body = AddData);
-    	$$self.$capture_state = () => ({ slide, AddData, body });
+    	function input0_input_handler() {
+    		email = this.value;
+    		$$invalidate(1, email);
+    	}
+
+    	function input1_input_handler() {
+    		password = this.value;
+    		$$invalidate(2, password);
+    	}
+
+    	const click_handler = async () => {
+    		$$invalidate(3, isLoading = true);
+    		await supabase.auth.signOut();
+    		$$invalidate(3, isLoading = false);
+    		location.reload();
+    	};
+
+    	const click_handler_1 = () => $$invalidate(0, body = AddData);
+
+    	$$self.$capture_state = () => ({
+    		slide,
+    		AddData,
+    		supabase,
+    		body,
+    		email,
+    		password,
+    		isLoading,
+    		login
+    	});
 
     	$$self.$inject_state = $$props => {
     		if ("body" in $$props) $$invalidate(0, body = $$props.body);
+    		if ("email" in $$props) $$invalidate(1, email = $$props.email);
+    		if ("password" in $$props) $$invalidate(2, password = $$props.password);
+    		if ("isLoading" in $$props) $$invalidate(3, isLoading = $$props.isLoading);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [body, click_handler];
+    	return [
+    		body,
+    		email,
+    		password,
+    		isLoading,
+    		login,
+    		input0_input_handler,
+    		input1_input_handler,
+    		click_handler,
+    		click_handler_1
+    	];
     }
 
     class Main extends SvelteComponentDev {
