@@ -318,7 +318,7 @@
         q_correction: question.question_correction,
         q_point: question.question_point,
         answers,
-        tags: [],
+        // tags: [],
       });
 
       if (error) throw error.message;
