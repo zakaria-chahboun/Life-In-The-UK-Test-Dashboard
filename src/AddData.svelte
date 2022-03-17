@@ -3,13 +3,10 @@
     Field,
     Input,
     Switch,
-    Tag,
-    Taglist,
     Button,
     Icon,
     Select,
     Notification,
-    Modal,
   } from "svelma";
   import { supabase } from "./supabase.js";
 
@@ -53,7 +50,7 @@
   let isLoadingQuestion = false; // ui/ux
   let isLoadingTestParent = false; // ui/ux
   let isLoadingGenerateID = false; // ui/ux
-  let isModalActive = false; // ui/ux
+  //let isModalActive = false; // ui/ux
   let notificationTest = {
     showUp: false,
     message: "",
@@ -156,7 +153,7 @@
 
       // generate the Title template: example "Life in the UK Chapter" or "Life in the UK Exam"
       // category_name =
-        // category_name.charAt(0).toUpperCase() + category_name.slice(1); //  uppercase the first letter
+      // category_name.charAt(0).toUpperCase() + category_name.slice(1); //  uppercase the first letter
       let template = `life in the uk ${category_name.replace(/s$/g, "")}`; // Make plural word singluar (only for words that end with an s)
       // check if no tests doc!
       if (data.length === 0) {
