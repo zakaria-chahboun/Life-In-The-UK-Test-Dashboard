@@ -3,6 +3,7 @@
   import { supabase } from "./supabase";
   import { slide } from "svelte/transition";
   import AddData from "./AddData.svelte";
+  import Blog from "./Blog.svelte";
   import Login from "./Login.svelte";
 
   let body = AddData; // by default;
@@ -58,23 +59,39 @@
     <!-- Siebare -->
     <aside class="menu column is-2 has-background-dark">
       <p class="mb-6" />
-      <p class="menu-label has-text-white-ter">Managment</p>
       <ul class="menu-list">
+        <!-- tests and questions -->
         <li>
           <a
             href="##"
-            class="has-text-white-ter"
+            class="has-text-white-ter has-text-weight-semibold is-capitalized"
             on:click={() => (body = AddData)}
           >
             <span class="icon"> <i class="fa fa-plus" /> </span>
-            Adding Tests & Questions
+            tests and questions
+          </a>
+        </li>
+        <!-- blog -->
+        <li>
+          <a
+            href="##"
+            class="has-text-white-ter has-text-weight-semibold is-capitalized"
+            on:click={() => (body = Blog)}
+          >
+            <span class="icon"> <i class="fa fa-align-center" /> </span>
+            blog post
           </a>
         </li>
       </ul>
     </aside>
     <!-- Body -->
-    <div class="container column is-10">
-      <div class="section">
+    <div class="column is-10">
+      <div
+        class="section"
+        class:notification={body == Blog}
+        class:is-info={body == Blog}
+        class:is-light={body == Blog}
+      >
         {#key body}
           <div transition:slide>
             <svelte:component this={body} />
