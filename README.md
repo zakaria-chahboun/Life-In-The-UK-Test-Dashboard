@@ -17,9 +17,11 @@ This project developed with 💙 + `Svelma = Bulma css + Svelte` + `Supabase`
 
 ## Screenshots
 
-<img src='./docs/dashboard.png' alt='dashboard.png'>
+![login](./docs/01.png)
 
-<img src='./docs/dashboard2.png' alt='dashboard.png'>
+![add tests & questions](./docs/02.png)
+
+![add blogs](./docs/03.png)
 
 You will find Supabase configs in `src/supabase.js`
 
