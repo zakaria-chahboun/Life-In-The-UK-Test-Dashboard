@@ -10,9 +10,13 @@
 
   // logout
   let isLoading = false;
+  let user = null;
+  supabase.auth.getUser().then((e) => {
+    user = e.data.user;
+  });
 </script>
 
-{#if !supabase.auth.user()}
+{#if !user}
   <Login />
 {:else}
   <!-- nav bar -->
@@ -29,9 +33,7 @@
     </div>
     <div class="navbar-menu">
       <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-        <a href="#" class="navbar-item"
-          >{supabase.auth.user() ? supabase.auth.user().email : ""}</a
-        >
+        <a href="#" class="navbar-item">{user ? user?.email : ""}</a>
       </div>
     </div>
     <div class="navbar-end">
