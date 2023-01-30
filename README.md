@@ -1,23 +1,28 @@
-### Dashboard To Quiz API
+# Dashboard To Life-In-The-Uk-Test API
 
-#### Firt of all:
+## Install Dependencies:
 
-```bash
+```console
 cd dashboard-quiz-supabase
 npm install
+```
 
+Run in dev mode
+
+```console
 npm run dev
 ```
 
-`this project developed with 💙 + Bulma,Svelte {Svelma 🌻} + Supabase 🔥`
+This project developed with 💙 + `Svelma = Bulma css + Svelte` + `Supabase`
 
-#### Screenshot: adding data
+## Screenshots
+
 <img src='./docs/dashboard.png' alt='dashboard.png'>
 
 <img src='./docs/dashboard2.png' alt='dashboard.png'>
 
-You will find supabase configs in `src/supabase.js`
+You will find Supabase configs in `src/supabase.js`
 
-----
+---
 
-by zakaria chahboun in 01/09/2021
+created by zakaria chahboun in 01/09/2021
