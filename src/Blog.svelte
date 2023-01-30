@@ -81,7 +81,7 @@ let name = 'zaki'
 
     // check fields
     if (source.length < 50) {
-      alert("The Minmum characters for a blog post is 50!");
+      alert("The Minimum characters for a blog post is 50!");
       isLoading = false; // ui ux
       return;
     }
@@ -91,16 +91,15 @@ let name = 'zaki'
       return;
     }
 
-    const { error } = await supabase.from("blog").insert([
-      {
-        title: title.trim(),
-        body: source,
-      },
-    ]);
+    const { error } = await supabase.from("blogs").insert({
+      title: title.trim(),
+      body: source,
+    });
 
     isLoading = false; // ui ux
     if (error) {
       alert("Error", error.message);
+      console.log(error);
       return;
     }
     showModal = true;
