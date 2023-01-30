@@ -12,17 +12,17 @@
 
   // -- Question table --
   let question = {
-    question_title: "",
-    question_hint: "",
-    question_correction: "",
-    question_point: 1,
+    text: "",
+    hint: "",
+    correction: "",
+    point: 1,
   };
 
   // -- Test  --
   let test = {
-    test_title: "",
-    test_description: "",
-    status_id: "public",
+    title: "",
+    description: "",
+    type_id: "public",
     score_to_pass: 18,
     difficulty_id: "easy",
     category_id: "",
@@ -34,13 +34,13 @@
   // -- Local Variables --
   let tmp_test_id = ""; // for binding
   let tmp_test_category = {
-    category_id: "",
-    category_name: "",
+    id: "",
+    name: "",
   }; // for binding
-  let tmp_status = false; // for binding
+  let isTestPrivate = false; // for binding
 
   let tmp_answer = {
-    answer_title: "",
+    text: "",
     is_correct: false,
     question,
   };
@@ -68,21 +68,21 @@
   // ____________ Client Data handling _____________________
 
   function addAnswer() {
-    if (tmp_answer.answer_title == "") return;
+    if (tmp_answer.text == "") return;
     answers.push({
-      answer_title: tmp_answer.answer_title,
+      text: tmp_answer.text,
       is_correct: tmp_answer.is_correct,
     });
     answers = answers;
     // clear data
-    tmp_answer.answer_title = "";
+    tmp_answer.text = "";
     tmp_answer.is_correct = false;
   }
   function deleteAnswer(index) {
     answers.splice(index, 1);
     answers = answers;
   }
-  // __ notifictions of questions : for sending success or erros messages
+  // __ notifictions of questions : for sending success or errors messages
   function setNotificationQuestion({
     message,
     type = "is-warning",
@@ -114,24 +114,24 @@
   }
   function resetFields({ type }) {
     if (type == "tests") {
-      test.test_title = "";
-      test.test_description = "";
-      test.status_id = "public";
+      test.title = "";
+      test.description = "";
+      test.type_id = "public";
       test.score_to_pass = 35;
       test.difficulty_id = "easy";
       test.category_id = "";
 
-      tmp_status = false;
+      isTestPrivate = false;
     } else if (type == "questions") {
-      question.question_title = "";
-      question.question_hint = "";
-      question.question_correction = "";
-      question.question_point = 1;
+      question.text = "";
+      question.hint = "";
+      question.correction = "";
+      question.point = 1;
 
       answers = [];
 
       tmp_test_id = "";
-      tmp_answer.answer_title = "";
+      tmp_answer.text = "";
       tmp_answer.is_correct = false;
       tmp_answer.question = "";
     }
@@ -144,8 +144,8 @@
     try {
       // get test count from db
       let { data, error } = await supabase
-        .from("test")
-        .select("test_title")
+        .from("tests")
+        .select("title")
         .eq("category_id", category_id)
         .order("order_test_title", { ascending: false });
 
@@ -154,32 +154,32 @@
       // generate the Title template: example "Life in the UK Chapter" or "Life in the UK Exam"
       // category_name =
       // category_name.charAt(0).toUpperCase() + category_name.slice(1); //  uppercase the first letter
-      let template = `life in the uk ${category_name.replace(/s$/g, "")}`; // Make plural word singluar (only for words that end with an s)
+      let template = `life in the uk ${category_name.replace(/s$/g, "")}`; // Make plural word singular (only for words that end with an s)
       // check if no tests doc!
       if (data.length === 0) {
         isLoadingGenerateID = !true; // ux
-        test.test_title = `${template} 1`;
+        test.title = `${template} 1`;
         return;
       }
 
-      let lastIDIndex = parseInt(data[0].test_title.replace(/\D/g, "")); // extract number from text, then convert it to Integer
+      let lastIDIndex = parseInt(data[0].title.replace(/\D/g, "")); // extract number from text, then convert it to Integer
       let length = data.length;
 
       // case 1: the last index of the tests is > than the length of ids 🙄
       if (lastIDIndex > length) {
         isLoadingGenerateID = !true; // ux
-        test.test_title = `${template} ${lastIDIndex + 1}`;
+        test.title = `${template} ${lastIDIndex + 1}`;
         return;
       }
       // case 2: the last index of the tests is < than the length of ids 🙄
       else if (lastIDIndex < length) {
         isLoadingGenerateID = !true; // ux
-        test.test_title = `${template} ${length + 1}`;
+        test.title = `${template} ${length + 1}`;
         return;
       }
-      // defalut return 😎
+      // default return 😎
       isLoadingGenerateID = !true; // ux
-      test.test_title = `${template} ${lastIDIndex + 1}`;
+      test.title = `${template} ${lastIDIndex + 1}`;
       return;
     } catch (error) {
       setNotificationTest({
@@ -193,16 +193,16 @@
     try {
       // check format:
       let collector = [];
-      if (test.test_title === "") {
+      if (test.title === "") {
         collector.push("title");
       }
-      if (test.test_description === "") {
+      if (test.description === "") {
         collector.push("description");
       }
       if (test.score_to_pass === "") {
         collector.push("score to pass");
       }
-      if (tmp_test_category.category_id === "") {
+      if (tmp_test_category.id === "") {
         collector.push("category");
       }
       // dynamic responce text 🤭
@@ -227,16 +227,16 @@
         return;
       }
 
-      test.status_id = tmp_status ? "private" : "public";
-      test.category_id = tmp_test_category.category_id;
-      test.test_title = test.test_title.toLocaleLowerCase();
+      test.type_id = isTestPrivate ? "private" : "public";
+      test.category_id = tmp_test_category.id;
+      test.title = test.title.toLocaleLowerCase();
 
       // set data in db
-      let { error } = await supabase.from("test").insert(test);
+      let { error } = await supabase.from("tests").insert(test);
       if (error) throw error.message;
       // send message to the author 🤗 ux
       setNotificationTest({
-        message: `the '${test.test_title}' is successfully added!`,
+        message: `the '${test.title}' is successfully added!`,
         type: "is-success",
       });
       isLoadingTest = false; // ux
@@ -255,14 +255,14 @@
     try {
       // check format:
       let collector = [];
-      if (question.question_title === "") {
+      if (question.text === "") {
         collector.push("question");
       }
       /*
       if (question.question_hint === "") {
         collector.push("hint");
       }*/
-      if (question.question_correction === "") {
+      if (question.correction === "") {
         collector.push("correction");
       }
       if (answers.length === 0) {
@@ -282,7 +282,7 @@
         isLoadingQuestion = false; // ux
         return;
       }
-      if (parseInt(question.question_point) <= 0) {
+      if (parseInt(question.point) <= 0) {
         setNotificationQuestion({
           message: `point must be > 0 🤦‍♂`,
         });
@@ -309,21 +309,20 @@
       }
 
       // call sql function from db
-      const { data, error } = await supabase.rpc("create_question", {
+      const { data, error } = await supabase.rpc("insert_question", {
         t_id: tmp_test_id,
-        q_title: question.question_title,
-        q_hint: question.question_hint,
-        q_correction: question.question_correction,
-        q_point: question.question_point,
+        q_text: question.text,
+        q_hint: question.hint,
+        q_correction: question.correction,
+        q_point: question.point,
         answers,
-        // tags: [],
       });
 
       if (error) throw error.message;
 
       // send message to the author 🤗 ux
       setNotificationQuestion({
-        message: `the question_id '${data.question_id}' is successfully added!`,
+        message: `The question 'ID: ${data.question_id}' is successfully added!`,
         type: "is-success",
       });
       isLoadingQuestion = false; // ux
@@ -342,8 +341,8 @@
     isLoadingTestParent = true; // ux 😉
     try {
       const { data, error } = await supabase
-        .from("test")
-        .select("test_id, test_title")
+        .from("tests")
+        .select("id, title")
         .order("order_test_title", { ascending: false });
       if (error) throw error.message;
       isLoadingTestParent = false; // ux 😉
@@ -361,7 +360,7 @@
   async function loadCategories() {
     isLoadingCategory = true; // ux 😉
     try {
-      const { data, error } = await supabase.from("category").select("*");
+      const { data, error } = await supabase.from("categories").select("*");
       if (error) throw error.message;
       isLoadingCategory = false; // ux 😉
       return data;
@@ -395,16 +394,16 @@
             <option
               class="is-capitalized"
               value={{
-                category_id: item.category_id,
-                category_name: item.category_name,
-              }}>{item.category_name}</option
+                id: item.id,
+                name: item.name,
+              }}>{item.name}</option
             >
           {/each}
         {/await}
         <option
           value={{
-            category_id: null,
-            category_name: null,
+            id: null,
+            name: null,
           }}>Null</option
         >
       </Select>
@@ -413,11 +412,11 @@
     <Button
       type="is-dark block"
       on:click={generateCorrectTestTitle(
-        tmp_test_category.category_id,
-        tmp_test_category.category_name
+        tmp_test_category.id,
+        tmp_test_category.name
       )}
       loading={isLoadingGenerateID}
-      disabled={!tmp_test_category.category_id}
+      disabled={!tmp_test_category.id}
     >
       Generate Unique Title!
     </Button>
@@ -426,7 +425,7 @@
     <Field label="test title">
       <Input
         placeholder="add a title of test here 🤪"
-        bind:value={test.test_title}
+        bind:value={test.title}
         icon="dove"
       />
     </Field>
@@ -435,25 +434,25 @@
       <Input
         placeholder="add a description of test here, don't write so mush 🙄"
         type="textarea"
-        bind:value={test.test_description}
+        bind:value={test.description}
         maxlength="1000"
       />
     </Field>
     <!-- Difficuly -->
     <Field label="difficulty">
       <div class="columns is-multiline">
-        {#await supabase.from("difficulty").select("difficulty_id")}
+        {#await supabase.from("difficulties").select("id")}
           Loading difficulty ...
         {:then { data }}
-          {#each data as d}
+          {#each data as difficulty}
             <div class="column">
-              <label for={d.difficulty_id}>{d.difficulty_id}</label>
+              <label for={difficulty.id}>{difficulty.id}</label>
               <input
-                id={d.difficulty_id}
+                id={difficulty.id}
                 type="radio"
                 name="difficulty"
                 bind:group={test.difficulty_id}
-                value={d.difficulty_id}
+                value={difficulty.id}
               />
             </div>
           {:else}No difficulty in database!{/each}
@@ -472,7 +471,7 @@
     </Field>
     <!-- Status? isPrivate? -->
     <div class="field">
-      <Switch bind:checked={tmp_status}>is private 🤴?</Switch>
+      <Switch bind:checked={isTestPrivate}>is private 🤴?</Switch>
     </div>
     <!-- Upload a Test -->
     <Button
@@ -499,7 +498,7 @@
     <Field label="question">
       <Input
         placeholder="add a question title here, be criative 😎"
-        bind:value={question.question_title}
+        bind:value={question.text}
         icon="dragon"
       />
     </Field>
@@ -508,7 +507,7 @@
       <Input
         placeholder="add a hint (to help user) here, 👌"
         type="text"
-        bind:value={question.question_hint}
+        bind:value={question.hint}
         maxlength="1000"
       />
     </Field>
@@ -517,7 +516,7 @@
       <Input
         placeholder="add a point here, 👌"
         type="number"
-        bind:value={question.question_point}
+        bind:value={question.point}
       />
     </Field>
     <!-- question correction -->
@@ -525,7 +524,7 @@
       <Input
         placeholder="add a question correction (the real answer) here, 👌"
         type="textarea"
-        bind:value={question.question_correction}
+        bind:value={question.correction}
         maxlength="1000"
         size="is-small"
       />
@@ -535,7 +534,7 @@
     <Field>
       <Input
         expanded
-        bind:value={tmp_answer.answer_title}
+        bind:value={tmp_answer.text}
         placeholder="Add an anwser here .. 🥰"
         icon="fish"
       />
@@ -552,12 +551,12 @@
       </p>
     </Field>
     <!-- display answers -->
-    {#each answers as { answer_title, is_correct }, i}
+    {#each answers as { text, is_correct }, i}
       <Field>
         <p class="control">
           <Button type="is-static">{i + 1}</Button>
         </p>
-        <Input expanded readonly value={answer_title} />
+        <Input expanded readonly value={text} />
         <p class="control">
           <Input readonly value={is_correct ? "correct 👍" : "wrong 👎"} />
         </p>
@@ -582,14 +581,14 @@
       >
         {#await promiseLoadTestIDs then data}
           {#each data as item}
-            <option value={item.test_id}>{item.test_title}</option>
+            <option value={item.id}>{item.title}</option>
           {/each}
         {/await}
       </Select>
       <p class="control">
         <Button
           type="is-dark"
-          on:click={(e) => (promiseLoadTestIDs = loadTestIDs())}
+          on:click={() => (promiseLoadTestIDs = loadTestIDs())}
         >
           <Icon icon="fire" />
         </Button>
@@ -598,7 +597,7 @@
     <!-- Upload a question -->
     <Button
       type="is-dark is-fullwidth"
-      on:click={(e) => addQuestion()}
+      on:click={() => addQuestion()}
       loading={isLoadingQuestion}
       expanded
     >
